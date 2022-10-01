@@ -15,4 +15,10 @@ public class Station : Spatial
             Mathf.RoundToInt(this.GetGlobalLocation().z)
         );
     }
+
+    public int UseOn(CartState cartState)
+    {
+        // this call should be stateless!
+        cartState.Ings.Add(IngredientDelivered);
+    }
 }
