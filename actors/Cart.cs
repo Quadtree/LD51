@@ -11,8 +11,17 @@ public class Cart : Spatial
 
     Recipe Recipe;
 
+    CartState CurrentCartState;
+
     public override void _Ready()
     {
         StartTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
+
+        CurrentCartState = new CartState
+        {
+            Facing = 0,
+            Ings = new System.Collections.Generic.List<Recipe.Ing>(),
+            Pos = new IntVec2(-10, -10)
+        };
     }
 }
