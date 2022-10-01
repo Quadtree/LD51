@@ -3,5 +3,7 @@ using Godot.Collections;
 
 public class GameState
 {
-    public Dictionary<int, CartS
+    public Dictionary<int, CartState> CartStates;
+
+    public Dictionary<int, StationState> StationStates;
 }
