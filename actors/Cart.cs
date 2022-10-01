@@ -115,7 +115,7 @@ public class Cart : Spatial
             PlannedActions.Remove(ct);
         }
 
-        var speed = 1 / Cart.CART_MOVE_TIME * delta;
+        var speed = 1 / Cart.CART_MOVE_TIME * delta * 1.5f;
         var deltaPos = PosToMoveTo - this.GetGlobalLocation();
         if (deltaPos.Length() < speed || deltaPos.Length() > 1.5f)
         {
