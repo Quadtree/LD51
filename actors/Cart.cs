@@ -9,7 +9,7 @@ public class Cart : Spatial
     // carts take 1 move per 0.5 seconds
 
     const float CART_MOVE_TIME = 0.5f;
-    const int CART_MAX_TICKS = 30;
+    const int CART_MAX_TICKS = 14;
 
     public int StartTick;
 
@@ -20,6 +20,8 @@ public class Cart : Spatial
     public CartState CurrentCartState;
 
     public Dictionary<int, CartAction> PlannedActions = new Dictionary<int, CartAction>();
+
+    public IntVec2 ExitPoint => new IntVec2(11, 4);
 
     public override void _Ready()
     {
@@ -82,7 +84,7 @@ public class Cart : Spatial
                 AT.NotNull(Recipe);
                 AT.NotNull(Recipe.Ings);
 
-                return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4);
+                return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == ExitPoint;
             },
             maxIteration: 50_000
         );
@@ -140,6 +142,7 @@ public class Cart : Spatial
                 foreach (var it2 in it.GetBlocked())
                 {
                     BlockedMap[it2] = it;
+                    GD.Print($"BlockedMap[{it2}] = {it}");
                 }
             }
         }
@@ -223,7 +226,19 @@ public class Cart : Spatial
             }
         }
 
-        public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { return 1; }
+        public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2)
+        {
+
+            var cs1 = node1.GameState.CartStates[Cart.ID];
+            var cs2 = node2.GameState.CartStates[Cart.ID];
+
+            if (Enumerable.SequenceEqual(cs1.Ings, cs2.Ings))
+            {
+                return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
+            }
+
+            return 100;
+        }
 
         public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2)
         {
@@ -248,7 +263,7 @@ public class Cart : Spatial
                 if (cs1.Ings[i] == cs2.Ings[i]) matchingIngs++;
             }
 
-            var ret = 1_000_000ul - (200ul * matchingIngs);
+            var ret = 1_000_000ul - (500ul * matchingIngs);
 
             //if (ret < 1_000_000ul) GD.Print($"ret={ret}");
 
