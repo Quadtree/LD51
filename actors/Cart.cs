@@ -39,6 +39,16 @@ public class Cart : Spatial
 
     struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
     {
+        private static ulong NextNodeID = 0;
+
+        ulong NodeID;
+
+        public AStarNode(GameState gs)
+        {
+            NodeID = NextNodeID++;
+            GameState = gs;
+        }
+
         public GameState GameState;
 
         public bool Equals(AStarNode other)
@@ -108,8 +118,8 @@ public class Cart : Spatial
                 {
                     // we haven't entered the map yet
 
-                    yield return new AStarNode { GameState = Advance(node.GameState, null) };
-                    yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
+                    yield return new AStarNode(Advance(node.GameState, null));
+                    yield return new AStarNode(Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }));
                 }
                 else
                 {
@@ -124,7 +134,7 @@ public class Cart : Spatial
                     {
                         if (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0)
                         {
-                            yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
+                            yield return new AStarNode(Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }));
                         }
                     }
 
@@ -135,7 +145,7 @@ public class Cart : Spatial
                             var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
                             if (BlockedMap.ContainsKey(np))
                             {
-                                yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                                yield return new AStarNode(Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }));
                             }
                         }
                     }
