@@ -24,6 +24,13 @@ public class Station : Spatial
         );
     }
 
+    public override void _Ready()
+    {
+        StationState.Cooldown = Cooldown;
+        StationState.Duration = Duration;
+        StationState.Ing = IngredientDelivered;
+    }
+
     //public struct StationUse
     //{
     //    public int Cooldown;
