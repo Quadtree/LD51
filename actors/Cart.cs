@@ -99,7 +99,17 @@ public class Cart : Spatial
             }
             else
             {
-                
+                var deltas = new IntVec2[]{
+                    new IntVec2(1, 0),
+                    new IntVec2(0, 1),
+                    new IntVec2(-1, 0),
+                    new IntVec2(0, -1),
+                };
+
+                for (var i = 0; i < 4; ++i)
+                {
+                    
+                }
             }
         }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
