@@ -17,4 +17,9 @@ public class GameState
             StationStates = StationStates.ToDictionary(it => it.Key, it => it.Value),
         };
     }
+
+    CartState GetCartState(int id) { return CartStates[id]; }
+    void SetCartState(int id, CartState state) { CartStates[id] = state; }
+    StationState GetStationState(int id) { return StationStates[id]; }
+    void SetStationState(int id, StationState state) { StationStates[id] = state; }
 }
