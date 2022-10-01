@@ -22,3 +22,13 @@ The player places stations. Carts can't travel through stations. Carts decide on
 
 The player gets credit for the time it takes orders to complete. Each order probably has like 30 seconds. So the score is 30 - Time.
 
+### Stations
+- Lettuce
+- Bread
+- Protein
+- Water
+- Tomato
+- Cook
+- Chop
+- Controller (Free turns when adjacent)
+- Accelerator (Speeds up _everything_)
