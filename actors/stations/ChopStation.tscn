@@ -3,7 +3,7 @@
 [ext_resource path="res://actors/stations/Station.tscn" type="PackedScene" id=1]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.00392157, 0.678431, 0, 1 )
+albedo_color = Color( 0.729412, 0.788235, 0.623529, 1 )
 
 [sub_resource type="SphereMesh" id=2]
 material = SubResource( 1 )
