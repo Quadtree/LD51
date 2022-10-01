@@ -20,5 +20,8 @@ public class Station : Spatial
     {
         // this call should be stateless!
         cartState.Ings.Add(IngredientDelivered);
+
+        // cooldown!
+        return 6;
     }
 }
