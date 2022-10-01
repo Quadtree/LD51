@@ -9,12 +9,16 @@ public class Cart : Spatial
 
     int StartTick;
 
+    int ID;
+
     Recipe Recipe;
 
     CartState CurrentCartState;
 
     public override void _Ready()
     {
+        
+
         StartTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
 
         CurrentCartState = new CartState
