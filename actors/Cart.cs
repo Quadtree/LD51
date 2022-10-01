@@ -84,6 +84,8 @@ public class Cart : Spatial
                     }
                 }
             }
+
+            return ngs;
         }
 
         public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
@@ -92,6 +94,8 @@ public class Cart : Spatial
             {
                 // we haven't entered the map yet
 
+                yield return new AStarNode { GameState = Advance(node.GameState, null) };
+                yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
             }
 
         }
