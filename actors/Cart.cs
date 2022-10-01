@@ -18,6 +18,8 @@ public class Cart : Spatial
 
     public CartState CurrentCartState;
 
+    public Dictionary<int, CartAction> PlannedActions = new Dictionary<int, CartAction>();
+
     public override void _Ready()
     {
         ID = GetTree().Root.FindChildrenByType<Cart>().Select(it => it.ID).Max() + 1;
@@ -36,6 +38,8 @@ public class Cart : Spatial
 
     struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
     {
+        public GameState GameState;
+
         public bool Equals(AStarNode other)
         {
             throw new NotImplementedException();
@@ -56,7 +60,41 @@ public class Cart : Spatial
             this.Cart = cart;
         }
 
-        public IEnumerable<AStarNode> GetNeighbors(AStarNode node) { throw new NotImplementedException(); }
+        public GameState Advance(GameState gs, CartAction ourAction)
+        {
+            var ngs = gs.Clone();
+
+            foreach (var cartId in gs.CartStates.Keys.OrderBy(it => it))
+            {
+                if (cartId != Cart.ID)
+                {
+                    // this is a different cart
+                    var otherCart = Cart.GetTree().Root.FindChildByPredicate<Cart>(it => it.ID == cartId);
+                    var otherCartAction = otherCart.PlannedActions.ContainsKey(gs.CurrentTick) ? otherCart.PlannedActions[gs.CurrentTick] : null;
+                    if (otherCartAction != null)
+                    {
+                        otherCartAction.Execute(ngs);
+                    }
+                }
+                else
+                {
+                    if (ourAction != null)
+                    {
+                        ourAction.Execute(ngs);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
+        {
+            if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
+            {
+                // we haven't entered the map yet
+
+            }
+
+        }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
         public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
     }

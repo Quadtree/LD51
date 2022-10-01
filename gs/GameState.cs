@@ -3,6 +3,8 @@ using System.Linq;
 
 public class GameState
 {
+    public int CurrentTick;
+
     public Dictionary<int, CartState> CartStates;
 
     public Dictionary<int, StationState> StationStates;
