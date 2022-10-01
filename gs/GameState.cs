@@ -15,6 +15,7 @@ public class GameState : CartAction.IMutableGameState
         {
             CartStates = CartStates.ToDictionary(it => it.Key, it => it.Value),
             StationStates = StationStates.ToDictionary(it => it.Key, it => it.Value),
+            CurrentTick = CurrentTick,
         };
     }
 
