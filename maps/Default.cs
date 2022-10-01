@@ -5,9 +5,23 @@ public class Default : Spatial, CartAction.IMutableGameState
 {
     public int CurrentTick;
 
+    float Charge;
+
     public override void _Ready()
     {
 
+    }
+
+    public override void _Process(float delta)
+    {
+        Charge += delta;
+
+        if (Charge >= Cart.CART_MOVE_TIME)
+        {
+            Charge -= Cart.CART_MOVE_TIME;
+            CurrentTick++;
+            GD.Print($"CurrentTick={CurrentTick}");
+        }
     }
 
     public CartState GetCartState(int id)

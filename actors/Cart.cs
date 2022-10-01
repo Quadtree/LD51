@@ -8,8 +8,8 @@ public class Cart : Spatial
     // carts follow a series of steps
     // carts take 1 move per 0.5 seconds
 
-    const float CART_MOVE_TIME = 0.5f;
-    const int CART_MAX_TICKS = 14;
+    public const float CART_MOVE_TIME = 0.5f;
+    public const int CART_MAX_TICKS = 14;
 
     public int StartTick;
 
@@ -22,8 +22,6 @@ public class Cart : Spatial
     public Dictionary<int, CartAction> PlannedActions = new Dictionary<int, CartAction>();
 
     public IntVec2 ExitPoint => new IntVec2(11, 4);
-
-    public Dictionary<int, CartAction> ActionQueue;
 
     public override void _Ready()
     {
@@ -95,8 +93,8 @@ public class Cart : Spatial
         {
             foreach (var node in nodes)
             {
-                GD.Print(node.MyAction);
-                ActionQueue[node.GameState.CurrentTick - 1] = node.MyAction;
+                GD.Print($"{node.GameState.CurrentTick - 1} - {node.MyAction}");
+                PlannedActions[node.GameState.CurrentTick - 1] = node.MyAction;
             }
         }
     }
@@ -106,10 +104,10 @@ public class Cart : Spatial
     {
         var def = GetTree().Root.FindChildByType<Default>();
         var ct = def.CurrentTick;
-        if (ActionQueue.ContainsKey(ct))
+        if (PlannedActions.ContainsKey(ct))
         {
-            ActionQueue[ct].Execute(def);
-            ActionQueue.Remove(ct);
+            PlannedActions[ct].Execute(def);
+            PlannedActions.Remove(ct);
         }
     }
 
