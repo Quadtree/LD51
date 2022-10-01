@@ -44,6 +44,13 @@ public class Cart : Spatial
             cgs.StationStates[it.ID] = it.StationState;
         }
 
+        Recipe = new Recipe
+        {
+            Ings = new Recipe.Ing[]{
+                Recipe.Ing.Lettuce
+            }
+        };
+
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
         var nodes = aStar.FindPath(
@@ -59,7 +66,8 @@ public class Cart : Spatial
                 AT.NotNull(Recipe.Ings);
 
                 return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4);
-            }
+            },
+            maxIteration: 50_000
         );
 
         GD.Print(nodes);
