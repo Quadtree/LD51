@@ -71,8 +71,8 @@ public class Cart : Spatial
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
         var nodes = aStar.FindPath(
-            new AStarNode(cgs),
-            new AStarNode(tgs),
+            new AStarNode(cgs, null),
+            new AStarNode(tgs, null),
             (it) =>
             {
                 AT.NotNull(it.GameState);
@@ -87,7 +87,10 @@ public class Cart : Spatial
             maxIteration: 50_000
         );
 
-        GD.Print(nodes);
+        foreach (var node in nodes)
+        {
+            GD.Print(node.GameState.CartStates[])
+        }
     }
 
     struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
@@ -96,13 +99,17 @@ public class Cart : Spatial
 
         ulong NodeID;
 
-        public AStarNode(GameState gs)
+        public AStarNode(GameState gs, CartAction myAction)
         {
             NodeID = NextNodeID++;
             GameState = gs;
+            MyAction = myAction;
         }
 
         public GameState GameState;
+
+        // this is the action I took to _get_ to this state
+        public CartAction MyAction;
 
         public bool Equals(AStarNode other)
         {
