@@ -33,3 +33,6 @@ multimesh = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.999999, -0.0011171, -8.89327e-07, -8.89259e-07, -6.2005e-08, 1, -0.0011171, 0.999999, 6.10115e-08, 3.926, 6.876, 3.5 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.713226, 0.355161, -0.604293, 0, 0.862125, 0.506696, 0.700934, 0.361389, -0.61489, 0, 7.11042, 0 )
