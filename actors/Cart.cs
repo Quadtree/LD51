@@ -160,7 +160,7 @@ public class Cart : Spatial
                 }
             }
 
-            GD.Print($"{ngs.CartStates[Cart.ID].Pos} / {ngs.CartStates[Cart.ID].Facing}");
+            //GD.Print($"{ngs.CartStates[Cart.ID].Pos} / {ngs.CartStates[Cart.ID].Facing}");
 
             return ngs;
         }
@@ -201,6 +201,7 @@ public class Cart : Spatial
                             var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
                             if (BlockedMap.ContainsKey(np))
                             {
+                                //GD.Print("TRYING!");
                                 yield return new AStarNode(Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }));
                             }
                         }
@@ -225,7 +226,11 @@ public class Cart : Spatial
                 if (cs1.Ings[i] == cs2.Ings[i]) matchingIngs++;
             }
 
-            return 1_000_000ul - 200ul * matchingIngs;
+            var ret = 1_000_000ul - 200ul * matchingIngs;
+
+            if (ret < 1_000_000ul) GD.Print($"ret={ret}");
+
+            return ret;
         }
     }
 }
