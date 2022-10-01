@@ -172,7 +172,7 @@ public class Cart : Spatial
                     for (var i = 0; i < 4; ++i)
                     {
                         var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                        if (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0 && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
+                        if ((i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
                         {
                             yield return new AStarNode(Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = np, Facing = i }));
                         }
