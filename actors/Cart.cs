@@ -87,9 +87,12 @@ public class Cart : Spatial
             maxIteration: 50_000
         );
 
-        foreach (var node in nodes)
+        if (nodes != null)
         {
-            GD.Print(node.MyAction);
+            foreach (var node in nodes)
+            {
+                GD.Print(node.MyAction);
+            }
         }
     }
 
@@ -198,7 +201,7 @@ public class Cart : Spatial
                     for (var i = 0; i < 4; ++i)
                     {
                         var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                        if ((i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
+                        if (!BlockedMap.ContainsKey(np) && (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
                         {
                             yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
                         }
