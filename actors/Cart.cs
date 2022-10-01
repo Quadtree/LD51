@@ -218,9 +218,14 @@ public class Cart : Spatial
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
 
-            if (cs1.Ings.Count > 0) GD.Print("GREATER");
+            if (cs1.Ings.Count > 0)
+            {
+                GD.Print("GREATER");
+                AT.True(cs1.Ings[0] == Recipe.Ing.Lettuce);
+            }
 
             AT.Eq(cs2.Ings.Count, 1);
+            AT.True(cs2.Ings[0] == Recipe.Ing.Lettuce);
 
             for (var i = 0; i < 10; i++)
             {
@@ -230,7 +235,7 @@ public class Cart : Spatial
                 if (cs1.Ings[i] == cs2.Ings[i]) matchingIngs++;
             }
 
-            var ret = 1_000_000ul - 200ul * matchingIngs;
+            var ret = 1_000_000ul - (200ul * matchingIngs);
 
             if (ret < 1_000_000ul) GD.Print($"ret={ret}");
 
