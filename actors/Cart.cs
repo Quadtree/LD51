@@ -142,7 +142,7 @@ public class Cart : Spatial
                 }
             }
         }
-        public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
-        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
+        public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { return 1; }
+        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { return 10_000; }
     }
 }
