@@ -7,6 +7,7 @@ public class Ground : MultiMeshInstance
     {
         var it = this;
         var mm = it.Multimesh;
+        mm.TransformFormat = MultiMesh.TransformFormatEnum.Transform3d;
 
         var WIDTH = 12;
         var HEIGHT = 8;
