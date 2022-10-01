@@ -3,3 +3,4 @@
 [ext_resource path="res://actors/stations/Station.tscn" type="PackedScene" id=1]
 
 [node name="Spatial" instance=ExtResource( 1 )]
+IngredientDelivered = 1
