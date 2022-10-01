@@ -41,7 +41,7 @@ public class Cart : Spatial
             Facing = 0,
             Ings = new System.Collections.Generic.List<Recipe.Ing>(),
             Pos = new IntVec2(-10, -10),
-            TurnsLeft = 7,
+            TurnsLeft = 5,
         };
 
         var cgs = new GameState();
