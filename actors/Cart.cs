@@ -24,6 +24,7 @@ public class Cart : Spatial
     public IntVec2 ExitPoint => new IntVec2(11, 4);
 
     public Vector3 PosToMoveTo;
+    public float BearingToTurnTo;
 
     public override void _Ready()
     {
