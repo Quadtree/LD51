@@ -23,6 +23,8 @@ public class Cart : Spatial
 
     public IntVec2 ExitPoint => new IntVec2(11, 4);
 
+    public Vector3 PosToMoveTo;
+
     public override void _Ready()
     {
         Recipe = new Recipe
@@ -108,9 +110,20 @@ public class Cart : Spatial
         {
             PlannedActions[ct].Execute(def);
 
-            this.SetGlobalLocation(new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y));
+            PosToMoveTo = new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y);
 
             PlannedActions.Remove(ct);
+        }
+
+        var speed = 1 / Cart.CART_MOVE_TIME * delta;
+        var deltaPos = PosToMoveTo - this.GetGlobalLocation();
+        if (deltaPos.Length() < speed)
+        {
+            this.SetGlobalLocation(PosToMoveTo);
+        }
+        else
+        {
+            this.SetGlobalLocation(this.GetGlobalLocation() + deltaPos.Normalized() * speed);
         }
     }
 
