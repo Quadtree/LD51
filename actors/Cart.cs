@@ -218,6 +218,10 @@ public class Cart : Spatial
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
 
+            if (cs1.Ings.Count > 0) GD.Print("GREATER");
+
+            AT.Eq(cs2.Ings.Count, 1);
+
             for (var i = 0; i < 10; i++)
             {
                 if (i >= cs1.Ings.Count) continue;

@@ -1,3 +1,5 @@
+using Godot;
+
 public struct StationState
 {
     public int ID;
