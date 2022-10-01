@@ -220,7 +220,7 @@ public class Cart : Spatial
 
             if (cs1.Ings.Count > 0)
             {
-                GD.Print("GREATER");
+                //GD.Print("GREATER");
                 AT.True(cs1.Ings[0] == Recipe.Ing.Lettuce);
             }
 
@@ -237,7 +237,7 @@ public class Cart : Spatial
 
             var ret = 1_000_000ul - (200ul * matchingIngs);
 
-            if (ret < 1_000_000ul) GD.Print($"ret={ret}");
+            //if (ret < 1_000_000ul) GD.Print($"ret={ret}");
 
             return ret;
         }
