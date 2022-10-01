@@ -7,6 +7,10 @@ public class Cart : Spatial
 
     const float CART_MOVE_TIME = 0.5f;
 
+    int StartTick;
+
+    Recipe Recipe;
+
     public override void _Ready()
     {
 
