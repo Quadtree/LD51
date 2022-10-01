@@ -8,6 +8,12 @@ public class Station : Spatial
     [Export]
     Recipe.Ing IngredientDelivered;
 
+    [Export]
+    int Cooldown;
+
+    [Export]
+    int Duration;
+
     public IEnumerable<IntVec2> GetBlocked()
     {
         yield return new IntVec2(
@@ -16,12 +22,22 @@ public class Station : Spatial
         );
     }
 
-    public int UseOn(CartState cartState)
+    public struct StationUse
+    {
+        public int Cooldown;
+        public int Duration;
+    }
+
+    public StationUse UseOn(CartState cartState)
     {
         // this call should be stateless!
         cartState.Ings.Add(IngredientDelivered);
 
         // cooldown!
-        return 6;
+        return new StationUse
+        {
+            Cooldown = Cooldown,
+            Duration = Duration,
+        };
     }
 }
