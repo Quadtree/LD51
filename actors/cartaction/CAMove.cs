@@ -2,8 +2,8 @@ public class CAMove : CartAction
 {
     public IntVec2 Dest;
 
-    public override void Execute(CartsState state)
+    public override void Execute(GameState state)
     {
-        state.Pos = Dest;
+        state.CartStates[CartID].Pos = Dest;
     }
 }
