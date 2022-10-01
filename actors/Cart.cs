@@ -46,11 +46,13 @@ public class Cart : Spatial
 
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
-        aStar.FindPath(
+        var nodes = aStar.FindPath(
             new AStarNode(cgs),
             new AStarNode(null),
             (it) => Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4)
         );
+
+        GD.Print(nodes);
     }
 
     struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
