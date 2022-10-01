@@ -73,6 +73,7 @@ public class Cart : Spatial
         public GameState Advance(GameState gs, CartAction ourAction)
         {
             var ngs = gs.Clone();
+            ngs.CurrentTick++;
 
             foreach (var cartId in gs.CartStates.Keys.OrderBy(it => it))
             {
@@ -107,7 +108,7 @@ public class Cart : Spatial
                 yield return new AStarNode { GameState = Advance(node.GameState, null) };
                 yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
             }
-            else if (Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
+            else
             {
                 var deltas = new IntVec2[]{
                     new IntVec2(1, 0),
@@ -121,12 +122,15 @@ public class Cart : Spatial
                     yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
                 }
 
-                for (var i = 0; i < 4; ++i)
+                if (Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
                 {
-                    var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                    if (BlockedMap.ContainsKey(np))
+                    for (var i = 0; i < 4; ++i)
                     {
-                        yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                        var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                        if (BlockedMap.ContainsKey(np))
+                        {
+                            yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                        }
                     }
                 }
             }
