@@ -3,14 +3,14 @@ using Godot;
 
 public class Ground : MultiMeshInstance
 {
+    public const int WIDTH = 12;
+    public const int HEIGHT = 8;
+
     public override void _Ready()
     {
         var it = this;
         var mm = it.Multimesh;
         mm.TransformFormat = MultiMesh.TransformFormatEnum.Transform3d;
-
-        var WIDTH = 12;
-        var HEIGHT = 8;
 
         mm.InstanceCount = WIDTH * HEIGHT;
 
