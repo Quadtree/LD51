@@ -13,6 +13,6 @@ public class Cart : Spatial
 
     public override void _Ready()
     {
-
+        StartTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
     }
 }
