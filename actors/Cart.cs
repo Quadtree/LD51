@@ -143,6 +143,8 @@ public class Cart : Spatial
                 }
             }
 
+            GD.Print($"{ngs.CartStates[Cart.ID].Pos} / {ngs.CartStates[Cart.ID].Facing}");
+
             return ngs;
         }
 
