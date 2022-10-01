@@ -15,4 +15,9 @@ public class CAMove : CartAction
         }
         state.CartStates[CartID] = newCartState;
     }
+
+    public override string ToString()
+    {
+        return $"CAMove({Dest}, {Facing})";
+    }
 }

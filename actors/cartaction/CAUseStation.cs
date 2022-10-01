@@ -6,4 +6,9 @@ public class CAUseStation : CartAction
     {
         state.StationStates[StationID].UseOn(state, CartID);
     }
+
+    public override string ToString()
+    {
+        return $"CAUseStation({StationID})";
+    }
 }

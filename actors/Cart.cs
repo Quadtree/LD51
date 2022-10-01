@@ -89,7 +89,7 @@ public class Cart : Spatial
 
         foreach (var node in nodes)
         {
-            GD.Print(node.GameState.CartStates[])
+            GD.Print(node.MyAction);
         }
     }
 
