@@ -141,18 +141,18 @@ public class Cart : Spatial
             }
         }
 
-        public GameState Advance(GameState gs, CartAction ourAction)
+        public AStarNode Advance(AStarNode gs, CartAction ourAction)
         {
-            var ngs = gs.Clone();
+            var ngs = gs.GameState.Clone();
             ngs.CurrentTick++;
 
-            foreach (var cartId in gs.CartStates.Keys.OrderBy(it => it))
+            foreach (var cartId in gs.GameState.CartStates.Keys.OrderBy(it => it))
             {
                 if (cartId != Cart.ID)
                 {
                     // this is a different cart
                     var otherCart = Cart.GetTree().Root.FindChildByPredicate<Cart>(it => it.ID == cartId);
-                    var otherCartAction = otherCart.PlannedActions.ContainsKey(gs.CurrentTick) ? otherCart.PlannedActions[gs.CurrentTick] : null;
+                    var otherCartAction = otherCart.PlannedActions.ContainsKey(gs.GameState.CurrentTick) ? otherCart.PlannedActions[gs.GameState.CurrentTick] : null;
                     if (otherCartAction != null)
                     {
                         otherCartAction.Execute(ngs);
@@ -169,7 +169,10 @@ public class Cart : Spatial
 
             //GD.Print($"{ngs.CartStates[Cart.ID].Pos} / {ngs.CartStates[Cart.ID].Facing}");
 
-            return ngs;
+            return new AStarNode(
+                ngs,
+                ourAction
+            );
         }
 
         public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
@@ -180,8 +183,8 @@ public class Cart : Spatial
                 {
                     // we haven't entered the map yet
 
-                    yield return new AStarNode(Advance(node.GameState, null));
-                    yield return new AStarNode(Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }));
+                    yield return Advance(node, null);
+                    yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 });
                 }
                 else
                 {
@@ -197,7 +200,7 @@ public class Cart : Spatial
                         var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
                         if ((i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
                         {
-                            yield return new AStarNode(Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = np, Facing = i }));
+                            yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
                         }
                     }
 
@@ -209,7 +212,7 @@ public class Cart : Spatial
                             if (BlockedMap.ContainsKey(np))
                             {
                                 //GD.Print("TRYING!");
-                                yield return new AStarNode(Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }));
+                                yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
                             }
                         }
                     }
