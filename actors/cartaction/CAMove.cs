@@ -11,7 +11,7 @@ public class CAMove : CartAction
         {
             newCartState.Facing = Facing;
             newCartState.TurnsLeft--;
-            AT.True(newCartState.TurnsLeft >= 0);
+            //AT.True(newCartState.TurnsLeft >= 0);
         }
         state.CartStates[CartID] = newCartState;
     }
