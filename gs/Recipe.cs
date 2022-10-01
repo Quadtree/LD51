@@ -5,4 +5,17 @@ public class Recipe
         None,
         Lettuce,
     }
+
+    public enum Op
+    {
+        None,
+        Cook,
+        Chop
+    }
+
+    public struct Step
+    {
+        Ing? Ing;
+        Op? Op;
+    }
 }
