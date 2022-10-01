@@ -1,21 +1,24 @@
-using Godot;
 using System;
+using Godot;
 
 public class Ground : MultiMeshInstance
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
-    }
+        var it = this;
+        var mm = it.Multimesh;
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+        var WIDTH = 12;
+        var HEIGHT = 8;
+
+        mm.InstanceCount = WIDTH * HEIGHT;
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                mm.SetInstanceTransform(x * HEIGHT + y, new Transform(Quat.Identity, new Vector3(x, 0, y)));
+            }
+        }
+    }
 }
