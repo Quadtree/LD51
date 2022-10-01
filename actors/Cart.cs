@@ -107,6 +107,9 @@ public class Cart : Spatial
         if (PlannedActions.ContainsKey(ct))
         {
             PlannedActions[ct].Execute(def);
+
+            this.SetGlobalLocation(new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y));
+
             PlannedActions.Remove(ct);
         }
     }
