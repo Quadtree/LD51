@@ -117,7 +117,7 @@ public class Cart : Spatial
 
         var speed = 1 / Cart.CART_MOVE_TIME * delta;
         var deltaPos = PosToMoveTo - this.GetGlobalLocation();
-        if (deltaPos.Length() < speed)
+        if (deltaPos.Length() < speed || deltaPos.Length() > 1.5f)
         {
             this.SetGlobalLocation(PosToMoveTo);
         }
