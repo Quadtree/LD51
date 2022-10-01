@@ -10,5 +10,5 @@ public abstract class CartAction
         void SetStationState(int id, StationState state);
     }
 
-    public abstract void Execute(GameState state);
+    public abstract void Execute(IMutableGameState state);
 }
