@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public struct CartState
 {
@@ -8,4 +9,11 @@ public struct CartState
     public int TurnsLeft;
 
     public List<Recipe.Ing> Ings;
+
+    public CartState Clone()
+    {
+        var ret = this;
+        ret.Ings = Ings.ToList();
+        return ret;
+    }
 }

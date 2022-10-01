@@ -24,13 +24,13 @@ public class Station : Spatial
         );
     }
 
-    public struct StationUse
-    {
-        public int Cooldown;
-        public int Duration;
-    }
+    //public struct StationUse
+    //{
+    //    public int Cooldown;
+    //    public int Duration;
+    //}
 
-    public StationUse UseOn(CartState cartState)
+    /*public StationUse UseOn(CartState cartState)
     {
         // this call should be stateless!
 
@@ -42,5 +42,5 @@ public class Station : Spatial
             Cooldown = Cooldown,
             Duration = Duration,
         };
-    }
+    }*/
 }

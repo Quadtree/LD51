@@ -193,6 +193,19 @@ public class Cart : Spatial
             }
         }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { return 1; }
-        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { return 10_000; }
+        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2)
+        {
+            var matchingIngs = 0;
+            var cs1 = node1.GameState.CartStates[Cart.ID];
+            var cs2 = node2.GameState.CartStates[Cart.ID];
+
+            for (var i=0;i<10;i++){
+                if (i >= cs1.Ings.Count) continue;
+                if (i >= cs2.Ings.Count) continue;
+
+                var node1Ing = cs1.Ings[i];
+            }
+
+        }
     }
 }
