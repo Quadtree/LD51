@@ -53,12 +53,12 @@ public class Cart : Spatial
 
         public bool Equals(AStarNode other)
         {
-            throw new NotImplementedException();
+            return NodeID == other.NodeID;
         }
 
         public int CompareTo(AStarNode other)
         {
-            throw new NotImplementedException();
+            return NodeID.CompareTo(other.NodeID);
         }
     }
 
