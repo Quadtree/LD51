@@ -15,7 +15,9 @@ public class Recipe
 
     public struct Step
     {
-        Ing? Ing;
-        Op? Op;
+        Ing Ing;
+        Op Op;
     }
+
+    public Step[] Steps;
 }
