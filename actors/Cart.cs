@@ -112,19 +112,33 @@ public class Cart : Spatial
             PlannedActions[ct].Execute(def);
 
             PosToMoveTo = new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y);
+            BearingToTurnTo = CurrentCartState.Facing * Mathf.Pi / 2;
 
             PlannedActions.Remove(ct);
         }
 
-        var speed = 1 / Cart.CART_MOVE_TIME * delta * 1.5f;
-        var deltaPos = PosToMoveTo - this.GetGlobalLocation();
-        if (deltaPos.Length() < speed || deltaPos.Length() > 1.5f)
+        var startRot = this.GlobalTransform.basis.RotationQuat();
+        var targetRot = new Quat(new Vector3(BearingToTurnTo, 0, 0));
+
+        if (startRot.AngleTo(targetRot) > 0.02f)
         {
-            this.SetGlobalLocation(PosToMoveTo);
+            GlobalTransform = new Transform(
+                startRot.Slerp(targetRot, 0.75f),
+                GlobalTransform.origin
+            );
         }
         else
         {
-            this.SetGlobalLocation(this.GetGlobalLocation() + deltaPos.Normalized() * speed);
+            var speed = 1 / Cart.CART_MOVE_TIME * delta * 1.5f;
+            var deltaPos = PosToMoveTo - this.GetGlobalLocation();
+            if (deltaPos.Length() < speed || deltaPos.Length() > 1.5f)
+            {
+                this.SetGlobalLocation(PosToMoveTo);
+            }
+            else
+            {
+                this.SetGlobalLocation(this.GetGlobalLocation() + deltaPos.Normalized() * speed);
+            }
         }
     }
 
