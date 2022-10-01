@@ -112,7 +112,7 @@ public class Cart : Spatial
             PlannedActions[ct].Execute(def);
 
             PosToMoveTo = new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y);
-            BearingToTurnTo = CurrentCartState.Facing * Mathf.Pi / 2;
+            BearingToTurnTo = (3 - CurrentCartState.Facing) * Mathf.Pi / 2;
 
             PlannedActions.Remove(ct);
         }
