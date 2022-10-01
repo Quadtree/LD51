@@ -110,6 +110,8 @@ public class Cart : Spatial
                 {
                     yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
                 }
+
+                
             }
         }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
