@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 
@@ -28,5 +29,25 @@ public class Cart : Spatial
             Ings = new System.Collections.Generic.List<Recipe.Ing>(),
             Pos = new IntVec2(-10, -10)
         };
+
+        var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
+    }
+
+    struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
+    {
+        public bool Equals(AStarNode other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CompareTo(AStarNode other)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class CartModel : AStarIndexed<AStarNode>.IModel
+    {
+
     }
 }
