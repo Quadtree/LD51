@@ -3,12 +3,12 @@ using Godot;
 
 public class Station : Spatial
 {
-    int ID;
+    public int ID;
 
     [Export]
     Recipe.Ing IngredientDelivered;
 
-    IEnumerable<IntVec2> GetBlocked()
+    public IEnumerable<IntVec2> GetBlocked()
     {
         yield return new IntVec2(
             Mathf.RoundToInt(this.GetGlobalLocation().x),

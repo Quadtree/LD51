@@ -55,9 +55,19 @@ public class Cart : Spatial
     {
         Cart Cart;
 
+        Dictionary<IntVec2, Station> BlockedMap;
+
         public CartModel(Cart cart)
         {
             this.Cart = cart;
+
+            foreach (var it in Cart.GetTree().Root.FindChildrenByType<Station>())
+            {
+                foreach (var it2 in it.GetBlocked())
+                {
+                    BlockedMap[it2] = it;
+                }
+            }
         }
 
         public GameState Advance(GameState gs, CartAction ourAction)
@@ -111,7 +121,14 @@ public class Cart : Spatial
                     yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
                 }
 
-                
+                for (var i = 0; i < 4; ++i)
+                {
+                    var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                    if (BlockedMap.ContainsKey(np))
+                    {
+                        yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                    }
+                }
             }
         }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
