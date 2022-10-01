@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -48,6 +49,15 @@ public class Cart : Spatial
 
     class CartModel : AStarIndexed<AStarNode>.IModel
     {
+        Cart Cart;
 
+        public CartModel(Cart cart)
+        {
+            this.Cart = cart;
+        }
+
+        public IEnumerable<AStarNode> GetNeighbors(AStarNode node) { throw new NotImplementedException(); }
+        public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
+        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
     }
 }
