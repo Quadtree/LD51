@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public class Cart : Spatial
@@ -7,17 +8,17 @@ public class Cart : Spatial
 
     const float CART_MOVE_TIME = 0.5f;
 
-    int StartTick;
+    public int StartTick;
 
-    int ID;
+    public int ID;
 
-    Recipe Recipe;
+    public Recipe Recipe;
 
-    CartState CurrentCartState;
+    public CartState CurrentCartState;
 
     public override void _Ready()
     {
-        
+        ID = GetTree().Root.FindChildrenByType<Cart>().Select(it => it.ID).Max() + 1;
 
         StartTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
 
