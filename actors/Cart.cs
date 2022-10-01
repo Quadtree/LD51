@@ -118,12 +118,12 @@ public class Cart : Spatial
         }
 
         var startRot = this.GlobalTransform.basis.RotationQuat();
-        var targetRot = new Quat(new Vector3(BearingToTurnTo, 0, 0));
+        var targetRot = new Quat(new Vector3(0, BearingToTurnTo, 0));
 
         if (startRot.AngleTo(targetRot) > 0.02f)
         {
             GlobalTransform = new Transform(
-                startRot.Slerp(targetRot, 0.75f),
+                startRot.Slerp(targetRot, 0.52f),
                 GlobalTransform.origin
             );
         }
