@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/stations/Station.tscn" type="PackedScene" id=1]
+
+[node name="ChopStation" instance=ExtResource( 1 )]
+IngredientDelivered = 3
