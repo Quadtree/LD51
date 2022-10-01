@@ -4,20 +4,9 @@ public class Recipe
     {
         None,
         Lettuce,
-    }
-
-    public enum Op
-    {
-        None,
         Cook,
-        Chop
+        Chop,
     }
 
-    public struct Step
-    {
-        Ing Ing;
-        Op Op;
-    }
-
-    public Step[] Steps;
+    public Ing[] Ings;
 }
