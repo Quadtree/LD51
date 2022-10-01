@@ -5,6 +5,7 @@ public struct CartState
     public int ID;
     public IntVec2 Pos;
     public int Facing;
+    public int TurnsLeft;
 
     public List<Recipe.Ing> Ings;
 }

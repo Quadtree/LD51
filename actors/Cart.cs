@@ -97,7 +97,10 @@ public class Cart : Spatial
                 yield return new AStarNode { GameState = Advance(node.GameState, null) };
                 yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
             }
-
+            else
+            {
+                
+            }
         }
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
         public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2) { throw new NotImplementedException(); }
