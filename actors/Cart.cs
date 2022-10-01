@@ -101,12 +101,15 @@ public class Cart : Spatial
         }
     }
 
+
     public override void _Process(float delta)
     {
-        var ct = GetTree().Root.FindChildByType<Default>().CurrentTick;
-        if (ActionQueue.ContainsKey())
+        var def = GetTree().Root.FindChildByType<Default>();
+        var ct = def.CurrentTick;
+        if (ActionQueue.ContainsKey(ct))
         {
-            CurrentCartState = ActionQueue[ct].Execute()
+            ActionQueue[ct].Execute(def);
+            ActionQueue.Remove(ct);
         }
     }
 

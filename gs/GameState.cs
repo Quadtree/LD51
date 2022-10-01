@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class GameState
+public class GameState : CartAction.IMutableGameState
 {
     public int CurrentTick;
 
