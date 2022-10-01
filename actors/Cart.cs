@@ -208,7 +208,9 @@ public class Cart : Spatial
                 }
             }
         }
+
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2) { return 1; }
+
         public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2)
         {
             ulong matchingIngs = 0;
