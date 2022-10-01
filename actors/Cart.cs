@@ -93,7 +93,7 @@ public class Cart : Spatial
         {
             foreach (var node in nodes)
             {
-                GD.Print($"{node.GameState.CurrentTick - 1} - {node.MyAction}");
+                GD.Print($"{node.GameState.CurrentTick - 1} - {node.NodeID} - {node.MyAction}");
                 PlannedActions[node.GameState.CurrentTick - 1] = node.MyAction;
             }
         }
@@ -118,7 +118,7 @@ public class Cart : Spatial
     {
         private static ulong NextNodeID = 0;
 
-        ulong NodeID;
+        public ulong NodeID;
 
         public AStarNode(GameState gs, CartAction myAction)
         {
