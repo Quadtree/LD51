@@ -9,6 +9,7 @@ public class Cart : Spatial
     // carts take 1 move per 0.5 seconds
 
     const float CART_MOVE_TIME = 0.5f;
+    const int CART_MAX_TICKS = 30;
 
     public int StartTick;
 
@@ -101,35 +102,41 @@ public class Cart : Spatial
 
         public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
         {
-            if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
+            if (node.GameState.CurrentTick < Cart.StartTick + CART_MAX_TICKS)
             {
-                // we haven't entered the map yet
+                if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
+                {
+                    // we haven't entered the map yet
 
-                yield return new AStarNode { GameState = Advance(node.GameState, null) };
-                yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
-            }
-            else
-            {
-                var deltas = new IntVec2[]{
+                    yield return new AStarNode { GameState = Advance(node.GameState, null) };
+                    yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 }) };
+                }
+                else
+                {
+                    var deltas = new IntVec2[]{
                     new IntVec2(1, 0),
                     new IntVec2(0, 1),
                     new IntVec2(-1, 0),
                     new IntVec2(0, -1),
                 };
 
-                for (var i = 0; i < 4; ++i)
-                {
-                    yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
-                }
-
-                if (Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
-                {
                     for (var i = 0; i < 4; ++i)
                     {
-                        var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                        if (BlockedMap.ContainsKey(np))
+                        if (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0)
                         {
-                            yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                            yield return new AStarNode { GameState = Advance(node.GameState, new CAMove { CartID = Cart.ID, Dest = node.GameState.CartStates[Cart.ID].Pos + deltas[i], Facing = i }) };
+                        }
+                    }
+
+                    if (Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
+                    {
+                        for (var i = 0; i < 4; ++i)
+                        {
+                            var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                            if (BlockedMap.ContainsKey(np))
+                            {
+                                yield return new AStarNode { GameState = Advance(node.GameState, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID }) };
+                            }
                         }
                     }
                 }
