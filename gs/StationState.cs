@@ -7,7 +7,7 @@ public struct StationState
     public int Duration;
     public int Cooldown;
 
-    public void UseOn(GameState gs, Station station, int CartID)
+    public void UseOn(GameState gs, int CartID)
     {
         var ncs = gs.CartStates[CartID].Clone();
 

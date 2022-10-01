@@ -23,6 +23,13 @@ public class Cart : Spatial
 
     public override void _Ready()
     {
+        Recipe = new Recipe
+        {
+            Ings = new Recipe.Ing[]{
+                Recipe.Ing.Lettuce
+            }
+        };
+
         ID = GetTree().Root.FindChildrenByType<Cart>().Select(it => it.ID).Max() + 1;
 
         StartTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
@@ -45,18 +52,27 @@ public class Cart : Spatial
             cgs.StationStates[it.ID] = it.StationState;
         }
 
-        Recipe = new Recipe
+
+        var tgs = new GameState();
+        foreach (var it in GetTree().Root.FindChildrenByType<Cart>())
         {
-            Ings = new Recipe.Ing[]{
-                Recipe.Ing.Lettuce
-            }
-        };
+            tgs.CartStates[it.ID] = it.CurrentCartState;
+        }
+        foreach (var it in GetTree().Root.FindChildrenByType<Station>())
+        {
+            tgs.StationStates[it.ID] = it.StationState;
+        }
+
+        var ocs = tgs.CartStates[ID];
+        ocs.Pos = new IntVec2(11, 4);
+        ocs.Ings = Recipe.Ings.ToList();
+        tgs.CartStates[ID] = ocs;
 
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
         var nodes = aStar.FindPath(
             new AStarNode(cgs),
-            new AStarNode(null),
+            new AStarNode(tgs),
             (it) =>
             {
                 AT.NotNull(it.GameState);
