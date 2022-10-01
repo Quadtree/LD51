@@ -34,7 +34,23 @@ public class Cart : Spatial
             Pos = new IntVec2(-10, -10)
         };
 
+        var cgs = new GameState();
+        foreach (var it in GetTree().Root.FindChildrenByType<Cart>())
+        {
+            cgs.CartStates[it.ID] = it.CurrentCartState;
+        }
+        foreach (var it in GetTree().Root.FindChildrenByType<Station>())
+        {
+            cgs.StationStates[it.ID] = it.StationState;
+        }
+
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
+
+        aStar.FindPath(
+            new AStarNode(cgs),
+            new AStarNode(null),
+            (it) => Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4)
+        );
     }
 
     struct AStarNode : IEquatable<AStarNode>, IComparable<AStarNode>
@@ -124,11 +140,11 @@ public class Cart : Spatial
                 else
                 {
                     var deltas = new IntVec2[]{
-                    new IntVec2(1, 0),
-                    new IntVec2(0, 1),
-                    new IntVec2(-1, 0),
-                    new IntVec2(0, -1),
-                };
+                        new IntVec2(1, 0),
+                        new IntVec2(0, 1),
+                        new IntVec2(-1, 0),
+                        new IntVec2(0, -1),
+                    };
 
                     for (var i = 0; i < 4; ++i)
                     {
@@ -138,7 +154,7 @@ public class Cart : Spatial
                         }
                     }
 
-                    if (Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
+                    if (!Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
                     {
                         for (var i = 0; i < 4; ++i)
                         {

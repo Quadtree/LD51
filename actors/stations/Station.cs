@@ -14,6 +14,8 @@ public class Station : Spatial
     [Export]
     int Duration;
 
+    public StationState StationState;
+
     public IEnumerable<IntVec2> GetBlocked()
     {
         yield return new IntVec2(
