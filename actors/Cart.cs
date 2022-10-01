@@ -49,7 +49,17 @@ public class Cart : Spatial
         var nodes = aStar.FindPath(
             new AStarNode(cgs),
             new AStarNode(null),
-            (it) => Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4)
+            (it) =>
+            {
+                AT.NotNull(it.GameState);
+                AT.Contains(it.GameState.CartStates.Keys, ID);
+                AT.NotNull(it.GameState.CartStates[ID]);
+                AT.NotNull(it.GameState.CartStates[ID].Ings);
+                AT.NotNull(Recipe);
+                AT.NotNull(Recipe.Ings);
+
+                return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == new IntVec2(11, 4);
+            }
         );
 
         GD.Print(nodes);
@@ -84,7 +94,7 @@ public class Cart : Spatial
     {
         Cart Cart;
 
-        Dictionary<IntVec2, Station> BlockedMap;
+        Dictionary<IntVec2, Station> BlockedMap = new Dictionary<IntVec2, Station>();
 
         public CartModel(Cart cart)
         {

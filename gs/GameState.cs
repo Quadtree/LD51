@@ -5,9 +5,9 @@ public class GameState
 {
     public int CurrentTick;
 
-    public Dictionary<int, CartState> CartStates;
+    public Dictionary<int, CartState> CartStates = new Dictionary<int, CartState>();
 
-    public Dictionary<int, StationState> StationStates;
+    public Dictionary<int, StationState> StationStates = new Dictionary<int, StationState>();
 
     public GameState Clone()
     {

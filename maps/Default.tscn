@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://maps/Ground.cs" type="Script" id=1]
 [ext_resource path="res://textures/floor_tile.png" type="Texture" id=2]
 [ext_resource path="res://textures/floor_tile_n.png" type="Texture" id=3]
 [ext_resource path="res://actors/stations/LettuceStation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://maps/Default.cs" type="Script" id=5]
+[ext_resource path="res://actors/Cart.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 2 )
@@ -24,6 +26,7 @@ mesh = SubResource( 1 )
 mesh = SubResource( 3 )
 
 [node name="Default" type="Spatial"]
+script = ExtResource( 5 )
 
 [node name="Ground" type="MultiMeshInstance" parent="."]
 multimesh = SubResource( 2 )
@@ -41,3 +44,5 @@ shadow_enabled = true
 
 [node name="Spatial" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 4 )
+
+[node name="Cart" parent="." instance=ExtResource( 6 )]
