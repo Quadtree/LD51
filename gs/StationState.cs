@@ -1,4 +1,4 @@
-public class StationState
+public struct StationState
 {
     public int ID;
 
