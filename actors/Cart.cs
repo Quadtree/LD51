@@ -23,6 +23,8 @@ public class Cart : Spatial
 
     public IntVec2 ExitPoint => new IntVec2(11, 4);
 
+    public Dictionary<int, CartAction> ActionQueue;
+
     public override void _Ready()
     {
         Recipe = new Recipe
@@ -94,7 +96,17 @@ public class Cart : Spatial
             foreach (var node in nodes)
             {
                 GD.Print(node.MyAction);
+                ActionQueue[node.GameState.CurrentTick - 1] = node.MyAction;
             }
+        }
+    }
+
+    public override void _Process(float delta)
+    {
+        var ct = GetTree().Root.FindChildByType<Default>().CurrentTick;
+        if (ActionQueue.ContainsKey())
+        {
+            CurrentCartState = ActionQueue[ct].Execute()
         }
     }
 
