@@ -83,7 +83,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         foreach (var it in UpcomingRecipes)
         {
-            it.SetGlobalLocation(new Vector3(0, 0, timeLeft * 1.5f));
+            it.SetGlobalLocation(new Vector3(-3, 0, timeLeft * 1.5f));
             timeLeft += 1;
         }
 

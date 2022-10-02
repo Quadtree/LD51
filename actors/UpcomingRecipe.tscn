@@ -13,4 +13,5 @@ margin_bottom = 14.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.127827, 0, 0, 0, 0.127827, 0, 0, 0, 0.127827, 0, 0, 0 )
+visible = false
 mesh = SubResource( 1 )

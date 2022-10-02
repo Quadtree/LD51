@@ -17,7 +17,7 @@ public class UpcomingRecipe : Spatial
         for (var i = 0; i < Recipe.Ings.Length; ++i)
         {
             var rep = GD.Load<PackedScene>(IngModels.Data[Recipe.Ings[i]].Path).Instance<Spatial>();
-            rep.Translation = new Vector3(1 + i, 0, 0);
+            rep.Translation = new Vector3(0.8f + i * .5f, 0, 0);
             rep.Scale = Vector3.One * 0.1f;
             AddChild(rep);
         }
