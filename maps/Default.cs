@@ -164,6 +164,11 @@ public class Default : Spatial, CartAction.IMutableGameState
             StationOnCursor.QueueFree();
             StationOnCursor = null;
         }
+
+        if (@event.IsActionPressed("return_to_title"))
+        {
+            GetTree().ChangeScene("res://maps/TitleScreen.tscn");
+        }
     }
 
     public void LoadStationOnCursor(string path)
