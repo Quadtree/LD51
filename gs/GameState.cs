@@ -3,7 +3,7 @@ using System.Linq;
 
 public class GameState : CartAction.IMutableGameState
 {
-    public int CurrentTick;
+    public int CurrentTick { get; set; }
 
     public Dictionary<int, CartState> CartStates = new Dictionary<int, CartState>();
 

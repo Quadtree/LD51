@@ -34,6 +34,7 @@ public class Station : Spatial
         StationState.Cooldown = Cooldown;
         StationState.Duration = Duration;
         StationState.Ing = IngredientDelivered;
+        StationState.ID = ID;
     }
 
     //public struct StationUse

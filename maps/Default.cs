@@ -3,7 +3,7 @@ using Godot;
 
 public class Default : Spatial, CartAction.IMutableGameState
 {
-    public int CurrentTick;
+    public int CurrentTick { get; set; }
 
     float Charge;
 
