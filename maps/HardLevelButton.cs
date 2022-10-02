@@ -10,6 +10,13 @@ public class HardLevelButton : Button
 
     void OnPressed()
     {
+        Default.NextRecipeQueue = new System.Collections.Generic.List<Recipe>();
+
+        Default.NextRecipeQueue.Add(Recipes.Soup);
+        Default.NextRecipeQueue.Add(Recipes.Soup);
+        Default.NextRecipeQueue.Add(Recipes.Soup);
+        Default.NextRecipeQueue.Add(Recipes.Sandwich);
+
         GetTree().ChangeScene("res://maps/Default.tscn");
     }
 }
