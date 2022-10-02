@@ -184,7 +184,10 @@ public class Cart : Spatial
             if (StackedFood.Count > 0)
                 StackedFood.Last().AddChild(nf);
             else
+            {
+                nf.Scale = new Vector3(0.1f, 0.1f, 0.1f);
                 AddChild(nf);
+            }
 
             StackedFood.Add(nf);
         }
