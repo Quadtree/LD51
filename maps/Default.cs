@@ -39,6 +39,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (NextRecipeQueue == null)
         {
+            RecipeQueue.Add(Recipes.SimpleSalad);
             RecipeQueue.Add(Recipes.Soup);
             RecipeQueue.Add(Recipes.Soup);
         }
@@ -85,7 +86,7 @@ public class Default : Spatial, CartAction.IMutableGameState
                     UpcomingRecipes.RemoveAt(0);
                     var cart = GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>();
                     this.AddChild(cart);
-                    cart.SetGlobalLocation(new Vector3(-1000, 0, -1000));
+                    cart.SetGlobalLocation(new Vector3(-10, 0, -10));
                 }
             }
 
