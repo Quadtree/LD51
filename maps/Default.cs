@@ -78,7 +78,12 @@ public class Default : Spatial, CartAction.IMutableGameState
         }
 
         var timeLeft = 1 - ((CurrentTick % 20 + (Charge / Cart.CART_MOVE_TIME)) / 20f);
-        GD.Print(timeLeft);
+
+        foreach (var it in UpcomingRecipes)
+        {
+            it.SetGlobalLocation(new Vector3())
+            timeLeft += 1;
+        }
 
         if (StationOnCursor != null)
         {
