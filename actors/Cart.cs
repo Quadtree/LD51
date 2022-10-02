@@ -183,6 +183,17 @@ public class Cart : Spatial
         var ct = def.CurrentTick;
         if (PlannedActions.ContainsKey(ct) && PlannedActions[ct] != null)
         {
+            if (PlannedActions[ct] is CAUseStation)
+            {
+                var act = (CAUseStation)PlannedActions[ct];
+                var station = GetTree().Root.FindChildByPredicate<Station>(it => act.StationID == it.ID);
+
+                if (station.IngredientDelivered == Recipe.Ing.Cook)
+                {
+                    RepeatingSoundEffect.CreateRepeatingAudio(this, "res://sounds/burner.wav", station.Duration);
+                }
+            }
+
             PlannedActions[ct].Execute(def, true);
 
             PosToMoveTo = new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y);

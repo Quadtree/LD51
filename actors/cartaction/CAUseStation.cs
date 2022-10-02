@@ -13,12 +13,4 @@ public class CAUseStation : CartAction
     {
         return $"CAUseStation({StationID})";
     }
-
-    void CreateRepeatingAudio(string path, float dur)
-    {
-        var n = GD.Load<PackedScene>("res://actors/RepeatingSoundEffect.tscn").Instance<RepeatingSoundEffect>();
-        n.Path = path;
-        n.TimeLeft = dur;
-
-    }
 }
