@@ -7,9 +7,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="FundsLabel" type="Label" parent="."]
-margin_left = 19.0
+margin_left = 20.0
 margin_top = 20.0
 margin_right = 256.0
 margin_bottom = 64.0
 text = "Funds: 0000"
 script = ExtResource( 1 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 46.0
+margin_right = 116.0
+margin_bottom = 82.0
+text = "Score: 0000"
