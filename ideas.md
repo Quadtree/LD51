@@ -37,10 +37,10 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Placing buildings
 - Getting money over time, buildings cost money
 - More recipies
-
-### TODO
 - Cart/cart collision
 - Display cooldown of buildings
+
+### TODO
 - Multiple levels
 - Final graphics
 - Final UI
