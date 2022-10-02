@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public class Default : Spatial, CartAction.IMutableGameState
@@ -12,6 +13,8 @@ public class Default : Spatial, CartAction.IMutableGameState
     Station StationOnCursor;
 
     public float Money = 500;
+
+    public List<Recipe> Recipes = new List<Recipe>();
 
     public override void _Ready()
     {
