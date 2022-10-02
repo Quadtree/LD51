@@ -35,9 +35,10 @@ public class Recipes
     public static Recipe ToastedSandwich = new Recipe("Toasted Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Cook);
     public static Recipe Water = new Recipe("Water", Recipe.Ing.Water);
     public static Recipe Tea = new Recipe("Tea", Recipe.Ing.Water, Recipe.Ing.Cook);
+    public static Recipe HugeSalad = new Recipe("HugeSalad", Recipe.Ing.Lettuce, Recipe.Ing.Lettuce, Recipe.Ing.Lettuce);
 
     public static Recipe[] AllRecipes = new Recipe[]{
-SimpleSalad,ChoppedSalad,MixedSalad,Soup,Sandwich,ToastedSandwich,Water,Tea
+SimpleSalad,ChoppedSalad,MixedSalad,Soup,Sandwich,ToastedSandwich,Water,Tea,HugeSalad
     };
 }
 
