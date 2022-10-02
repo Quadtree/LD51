@@ -122,7 +122,7 @@ public class Cart : Spatial
         // make sure the startup actions happen on the main thread
         FindThePathEnumerator.MoveNext();
 
-        if (OS.CanUseThreads())
+        if (OS.CanUseThreads() && false)
         {
             PathFindingThread = new System.Threading.Thread(PathFindingThreadEntry);
             PathFindingThread.Start();
