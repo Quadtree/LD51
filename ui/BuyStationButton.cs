@@ -17,7 +17,7 @@ public class BuyStationButton : Spatial
         rep.Scale = Vector3.One * 0.1f;
         AddChild(rep);
 
-        this.FindChildByType<Button>().Text = Type.ToString();
+        this.FindChildByType<Button>().Text = Type.ToString() + " Station";
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
