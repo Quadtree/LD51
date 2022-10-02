@@ -17,6 +17,8 @@ public class RepeatingSoundEffect : Node
     {
         TimeLeft -= delta;
         if (TimeLeft <= 0) QueueFree();
+
+        if (!this.FindChildByType<AudioStreamPlayer>().Playing) this.FindChildByType<AudioStreamPlayer>().Play();
     }
 
     public static void CreateRepeatingAudio(Node ctx, string path, float dur)
