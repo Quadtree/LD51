@@ -16,7 +16,11 @@ public class RepeatingSoundEffect : Node
     public override void _Process(float delta)
     {
         TimeLeft -= delta;
-        if (TimeLeft <= 0) QueueFree();
+        if (TimeLeft <= 0)
+        {
+            GD.Print($"DONE with repeating audio path={Path}");
+            QueueFree();
+        }
 
         if (!this.FindChildByType<AudioStreamPlayer>().Playing) this.FindChildByType<AudioStreamPlayer>().Play();
     }
@@ -27,5 +31,6 @@ public class RepeatingSoundEffect : Node
         n.Path = path;
         n.TimeLeft = dur;
         ctx.GetTree().CurrentScene.AddChild(n);
+        GD.Print($"Starting repeating audio path={path} dur={dur}");
     }
 }
