@@ -83,7 +83,9 @@ public class Default : Spatial, CartAction.IMutableGameState
                     GD.Print("Spawning!");
                     UpcomingRecipes[0].QueueFree();
                     UpcomingRecipes.RemoveAt(0);
-                    this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
+                    var cart = GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>();
+                    this.AddChild(cart);
+                    cart.SetGlobalLocation(new Vector3(-1000, 0, -1000));
                 }
             }
 
