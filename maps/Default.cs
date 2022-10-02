@@ -16,6 +16,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public List<Recipe> RecipeQueue = new List<Recipe>();
 
+    public List<UpcomingRecipe> UpcomingRecipes = new List<UpcomingRecipe>();
+
     public Recipe GetNextRecipe()
     {
         var ret = RecipeQueue[0];
@@ -48,6 +50,12 @@ public class Default : Spatial, CartAction.IMutableGameState
         RecipeQueue.Add(Recipes.MixedSalad);
         RecipeQueue.Add(Recipes.MixedSalad);
         RecipeQueue.Add(Recipes.MixedSalad);
+
+        foreach (var it in RecipeQueue)
+        {
+            var rce = GD.Load<PackedScene>("res://actors/UpcomingRecipe.tscn").Instance<UpcomingRecipe>();
+            UpcomingRecipes.Add(rce);
+        }
     }
 
     public override void _Process(float delta)
