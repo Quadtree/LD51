@@ -32,3 +32,14 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Chop
 - Controller (Free turns when adjacent)
 - Accelerator (Speeds up _everything_)
+
+### TODO
+- Placing buildings
+- Getting money over time, buildings cost money
+- More recipies
+- Cart/cart collision
+- Multiple levels
+- Final graphics
+- Sound
+- Title screen
+- Music
