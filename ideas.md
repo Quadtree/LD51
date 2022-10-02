@@ -33,13 +33,17 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Controller (Free turns when adjacent)
 - Accelerator (Speeds up _everything_)
 
-### TODO
+### DONE
 - Placing buildings
+
+### TODO
 - Getting money over time, buildings cost money
 - More recipies
 - Cart/cart collision
+- Display cooldown of buildings
 - Multiple levels
 - Final graphics
+- Final UI
 - Sound
 - Title screen
 - Music
