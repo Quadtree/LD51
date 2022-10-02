@@ -16,7 +16,7 @@ public class Station : Spatial
     int Duration;
 
     [Export]
-    float Cost;
+    public float Cost;
 
     public bool Built = true;
 

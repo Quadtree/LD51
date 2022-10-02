@@ -54,13 +54,23 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
-            StationOnCursor.Built = true;
-            foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())
+            GD.Print("place_plan");
+            if (StationOnCursor.Cost <= Money)
             {
-                it.MaterialOverride = null;
+                Money -= StationOnCursor.Cost;
+                StationOnCursor.Built = true;
+                foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())
+                {
+                    it.MaterialOverride = null;
+                }
+                // TODO: Money!
+                StationOnCursor = null;
             }
-            // TODO: Money!
-            StationOnCursor = null;
+            else
+            {
+                GD.Print("Insufficient funds");
+                // TODO: Sound effect?
+            }
         }
 
         if (@event.IsActionPressed("cancel_plan"))
@@ -71,6 +81,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     void LoadStationOnCursor(string path)
     {
+        if (StationOnCursor != null) StationOnCursor.QueueFree();
+
         StationOnCursor = GD.Load<PackedScene>(path).Instance<Station>();
         StationOnCursor.Built = false;
         GetTree().CurrentScene.AddChild(StationOnCursor);
