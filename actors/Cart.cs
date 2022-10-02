@@ -294,6 +294,36 @@ public class Cart : Spatial
 
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2)
         {
+            /*var cs1 = node1.GameState.CartStates[Cart.ID];
+            var cs2 = node2.GameState.CartStates[Cart.ID];
+            var neededCount = cs1.Ings.Count - cs2.Ings.Count;
+
+            if (neededCount == 0)
+            {
+                return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
+            }
+            else
+            {
+                var nextIngredient = cs2.Ings[cs1.Ings.Count];
+                AT.DoesNotContain(cs2.Ings, Recipe.Ing.None);
+                AT.True(nextIngredient != Recipe.Ing.None);
+                var tp = Tuple.Create(cs1.Pos, nextIngredient);
+                if (!DistanceField.ContainsKey(tp))
+                {
+                    GD.PushWarning($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
+                    return 10_000;
+                }
+
+                return (uint)(neededCount * 200 + DistanceField[tp]);
+            }
+
+            return 100;*/
+            return 1;
+        }
+
+        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2)
+        {
+            //ulong matchingIngs = 0;
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
             var neededCount = cs1.Ings.Count - cs2.Ings.Count;
@@ -317,25 +347,7 @@ public class Cart : Spatial
                 return (uint)(neededCount * 200 + DistanceField[tp]);
             }
 
-            return 100;
-        }
-
-        public ulong EstimateCostBetweenNodes(AStarNode node1, AStarNode node2)
-        {
-            ulong matchingIngs = 0;
-            var cs1 = node1.GameState.CartStates[Cart.ID];
-            var cs2 = node2.GameState.CartStates[Cart.ID];
-
-            if (cs1.Ings.Count > 0)
-            {
-                //GD.Print("GREATER");
-                //AT.True(cs1.Ings[0] == Recipe.Ing.Lettuce);
-            }
-
-            //AT.Eq(cs2.Ings.Count, 1);
-            //AT.True(cs2.Ings[0] == Recipe.Ing.Lettuce);
-
-            for (var i = 0; i < 10; i++)
+            /*for (var i = 0; i < 10; i++)
             {
                 if (i >= cs1.Ings.Count) continue;
                 if (i >= cs2.Ings.Count) continue;
@@ -343,11 +355,11 @@ public class Cart : Spatial
                 if (cs1.Ings[i] == cs2.Ings[i]) matchingIngs++;
             }
 
-            var ret = 1_000_000ul - (500ul * matchingIngs);
+            var ret = 1_000_000ul - (500ul * matchingIngs);*/
 
             //if (ret < 1_000_000ul) GD.Print($"ret={ret}");
 
-            return ret;
+            //return ret;
         }
     }
 }
