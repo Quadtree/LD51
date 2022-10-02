@@ -233,6 +233,8 @@ public class Cart : Spatial
 
     class CartModel : AStarIndexed<AStarNode>.IModel
     {
+        bool Abort = false;
+
         Cart Cart;
 
         Dictionary<IntVec2, Station> BlockedMap = new Dictionary<IntVec2, Station>();
@@ -313,68 +315,71 @@ public class Cart : Spatial
 
         public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
         {
-            if (node.GameState.CurrentTick < node.GameState.GetCartState(Cart.ID).CanTakeNextActionAt)
+            if (!Abort)
             {
-                yield return Advance(node, null);
-            }
-            else
-            {
-
-                if (node.GameState.CurrentTick < Cart.StartTick + CART_MAX_TICKS)
+                if (node.GameState.CurrentTick < node.GameState.GetCartState(Cart.ID).CanTakeNextActionAt)
                 {
-                    if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
-                    {
-                        // we haven't entered the map yet
+                    yield return Advance(node, null);
+                }
+                else
+                {
 
-                        yield return Advance(node, null);
-                        yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 });
-                    }
-                    else
+                    if (node.GameState.CurrentTick < Cart.StartTick + CART_MAX_TICKS)
                     {
-                        var deltas = new IntVec2[]{
+                        if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
+                        {
+                            // we haven't entered the map yet
+
+                            yield return Advance(node, null);
+                            yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = new IntVec2(0, 4), Facing = 0 });
+                        }
+                        else
+                        {
+                            var deltas = new IntVec2[]{
                             new IntVec2(1, 0),
                             new IntVec2(0, 1),
                             new IntVec2(-1, 0),
                             new IntVec2(0, -1),
                         };
 
-                        for (var i = 0; i < 4; ++i)
-                        {
-                            var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                            if (!BlockedMap.ContainsKey(np) &&
-                                (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) &&
-                                np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT &&
-                                (
-                                    np == ExitPoint ||
-                                    !node.GameState.CartStates.Any(it => it.Value.Pos == np)
-                                )
-                                )
+                            for (var i = 0; i < 4; ++i)
                             {
-                                yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
-                            }
-                        }
-
-                        if (!Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
-                        {
-                            var cs1 = node.GameState.CartStates[Cart.ID].Ings;
-                            var recipeNeeded = Cart.Recipe.Ings;
-                            var nextIngredient = cs1.Count < recipeNeeded.Length ? recipeNeeded[cs1.Count] : Recipe.Ing.None;
-
-                            if (nextIngredient != Recipe.Ing.None)
-                            {
-                                for (var i = 0; i < 4; ++i)
+                                var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                                if (!BlockedMap.ContainsKey(np) &&
+                                    (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) &&
+                                    np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT &&
+                                    (
+                                        np == ExitPoint ||
+                                        !node.GameState.CartStates.Any(it => it.Value.Pos == np)
+                                    )
+                                    )
                                 {
-                                    var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                                    if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient && node.GameState.GetStationState(BlockedMap[np].ID).CooldownWillBeUpAt <= node.GameState.CurrentTick)
-                                    {
-                                        //GD.Print("TRYING!");
-                                        yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
-                                    }
+                                    yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
                                 }
                             }
-                            else
+
+                            if (!Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
                             {
-                                GD.PushError($"We think we're done, but {String.Join(",", node.GameState.CartStates[Cart.ID].Ings)} != {String.Join(",", Cart.Recipe.Ings)}");
+                                var cs1 = node.GameState.CartStates[Cart.ID].Ings;
+                                var recipeNeeded = Cart.Recipe.Ings;
+                                var nextIngredient = cs1.Count < recipeNeeded.Length ? recipeNeeded[cs1.Count] : Recipe.Ing.None;
+
+                                if (nextIngredient != Recipe.Ing.None)
+                                {
+                                    for (var i = 0; i < 4; ++i)
+                                    {
+                                        var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                                        if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient && node.GameState.GetStationState(BlockedMap[np].ID).CooldownWillBeUpAt <= node.GameState.CurrentTick)
+                                        {
+                                            //GD.Print("TRYING!");
+                                            yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    GD.PushError($"We think we're done, but {String.Join(",", node.GameState.CartStates[Cart.ID].Ings)} != {String.Join(",", Cart.Recipe.Ings)}");
+                                }
                             }
                         }
                     }
@@ -431,7 +436,8 @@ public class Cart : Spatial
                 var tp = Tuple.Create(cs1.Pos.x != -10 ? cs1.Pos : Cart.StartPoint, nextIngredient);
                 if (!DistanceField.ContainsKey(tp))
                 {
-                    GD.PushWarning($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
+                    GD.Print($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
+                    Abort = true;
                     return 10_000;
                 }
 
