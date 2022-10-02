@@ -153,7 +153,7 @@ public class Default : Spatial, CartAction.IMutableGameState
         }
     }
 
-    void LoadStationOnCursor(string path)
+    public void LoadStationOnCursor(string path)
     {
         if (StationOnCursor != null) StationOnCursor.QueueFree();
 

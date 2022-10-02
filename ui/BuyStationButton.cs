@@ -21,6 +21,12 @@ public class BuyStationButton : Spatial
 
         this.FindChildByType<Button>().Text = Type.ToString() + $" (${ts.Cost})";
         this.FindChildByType<Button>().HintTooltip = $"Cost: ${ts.Cost}\nUse Time: {ts.Duration + 1}\nCooldown: {ts.Cooldown + 1}";
+        this.FindChildByType<Button>().Connect("pressed", this, nameof(Pressed));
+    }
+
+    void Pressed()
+    {
+
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
