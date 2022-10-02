@@ -48,12 +48,12 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Multiple levels
 - Lose screen
 - Prevent placing stations on top of eachother
+- Score screen
 
 ### TODO
 - Final graphics
 - Sound
 - Prevent carts from overlapping
-- Score screen
 
 ### Unlikely
 - Music
