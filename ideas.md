@@ -43,9 +43,9 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Final UI
 - Instantly fail if distance field is empty
 - Figure out UI freeze issue
+- Figure out lighting issue
 
 ### TODO
-- Figure out lighting issue
 - Multiple levels
 - Final graphics
 - Sound
