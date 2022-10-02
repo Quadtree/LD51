@@ -57,7 +57,7 @@ public class Cart : Spatial
         {
             cgs.CartStates[it.ID] = it.CurrentCartState;
         }
-        foreach (var it in GetTree().Root.FindChildrenByType<Station>())
+        foreach (var it in GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built))
         {
             cgs.StationStates[it.ID] = it.StationState;
         }
@@ -69,7 +69,7 @@ public class Cart : Spatial
         {
             tgs.CartStates[it.ID] = it.CurrentCartState;
         }
-        foreach (var it in GetTree().Root.FindChildrenByType<Station>())
+        foreach (var it in GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built))
         {
             tgs.StationStates[it.ID] = it.StationState;
         }
@@ -218,7 +218,7 @@ public class Cart : Spatial
         {
             this.Cart = cart;
 
-            var stations = Cart.GetTree().Root.FindChildrenByType<Station>();
+            var stations = Cart.GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).ToArray();
 
             foreach (var it in stations)
             {

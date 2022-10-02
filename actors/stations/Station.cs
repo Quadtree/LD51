@@ -15,6 +15,8 @@ public class Station : Spatial
     [Export]
     int Duration;
 
+    public bool Built;
+
     public StationState StationState;
 
     public IntVec2 IntPos => new IntVec2(
