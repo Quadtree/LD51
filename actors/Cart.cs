@@ -301,7 +301,7 @@ public class Cart : Spatial
                         }
                         else
                         {
-                            GD.PushError("Wait a minute...");
+                            GD.PushError($"We think we're done, but {String.Join(",", node.GameState.CartStates[Cart.ID].Ings)} != {String.Join(",", Cart.Recipe.Ings)}");
                         }
                     }
                 }
