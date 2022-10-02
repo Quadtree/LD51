@@ -42,10 +42,10 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Carts disappear when they reach the end
 - Final UI
 - Instantly fail if distance field is empty
+- Figure out UI freeze issue
 
 ### TODO
 - Figure out lighting issue
-- Figure out UI freeze issue
 - Multiple levels
 - Final graphics
 - Sound

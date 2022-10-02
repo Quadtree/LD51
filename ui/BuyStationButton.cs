@@ -19,6 +19,10 @@ public class BuyStationButton : Spatial
 
         var ts = GD.Load<PackedScene>($"res://actors/stations/{Type}Station.tscn").Instance<Station>();
 
+        var btn = this.FindChildByType<Button>();
+        RemoveChild(btn);
+        GetTree().Root.FindChildByType<CanvasLayer>().AddChild(btn);
+
         this.FindChildByType<Button>().Text = Type.ToString() + $" (${ts.Cost})";
         this.FindChildByType<Button>().HintTooltip = $"Cost: ${ts.Cost}\nUse Time: {ts.Duration + 1}\nCooldown: {ts.Cooldown + 1}";
         this.FindChildByType<Button>().Connect("pressed", this, nameof(Pressed));
