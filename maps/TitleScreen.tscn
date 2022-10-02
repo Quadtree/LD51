@@ -27,7 +27,12 @@ anchor_right = 0.75
 anchor_bottom = 0.5
 margin_top = 0.200012
 custom_fonts/font = ExtResource( 2 )
-text = "With orders coming in every 10 seconds, you've decided to automate your kitchen. Robots will enter from the left to grab ingredients from stations that you place. Click the buttons on the right panel to select stations, and then place them on the grid. Robots can only make 5 turns, so don't make them turn too much. You can see on the left upcoming orders."
+text = "With orders coming in every 10 seconds, you've decided to automate your kitchen. Robots will enter from the left to grab ingredients from stations that you place. Click the buttons on the right panel to select stations, and then place them on the grid. Robots can only make 5 turns, so don't make them turn too much. You can see on the left upcoming orders.
+
+Controls:
+Ctrl+R - Return to title
+Left Click - Place plan
+Right Click - Cancel plan"
 align = 1
 valign = 1
 autowrap = true
