@@ -6,7 +6,7 @@ public class Station : Spatial
     public int ID;
 
     [Export]
-    Recipe.Ing IngredientDelivered;
+    public Recipe.Ing IngredientDelivered;
 
     [Export]
     int Cooldown;
@@ -16,12 +16,14 @@ public class Station : Spatial
 
     public StationState StationState;
 
-    public IEnumerable<IntVec2> GetBlocked()
-    {
-        yield return new IntVec2(
+    public IntVec2 IntPos => new IntVec2(
             Mathf.RoundToInt(this.GetGlobalLocation().x),
             Mathf.RoundToInt(this.GetGlobalLocation().z)
         );
+
+    public IEnumerable<IntVec2> GetBlocked()
+    {
+        yield return IntPos;
     }
 
     public override void _Ready()

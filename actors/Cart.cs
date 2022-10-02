@@ -178,16 +178,37 @@ public class Cart : Spatial
 
         Dictionary<IntVec2, Station> BlockedMap = new Dictionary<IntVec2, Station>();
 
+        Dictionary<Tuple<IntVec2, Recipe.Ing>, int> DistanceField = new Dictionary<Tuple<IntVec2, Recipe.Ing>, int>();
+
         public CartModel(Cart cart)
         {
             this.Cart = cart;
 
-            foreach (var it in Cart.GetTree().Root.FindChildrenByType<Station>())
+            var stations = Cart.GetTree().Root.FindChildrenByType<Station>();
+
+            foreach (var it in stations)
             {
                 foreach (var it2 in it.GetBlocked())
                 {
                     BlockedMap[it2] = it;
                     GD.Print($"BlockedMap[{it2}] = {it}");
+                }
+            }
+
+            foreach (var ing in Util.GetEnumValues<Recipe.Ing>())
+            {
+                var stationsOfThisType = stations.Where(it => it.IngredientDelivered == ing).ToArray();
+                if (stationsOfThisType.Length > 0)
+                {
+                    for (var x = 0; x < Ground.WIDTH; ++x)
+                    {
+                        for (var y = 0; y < Ground.HEIGHT; ++y)
+                        {
+
+                            var minDist = stationsOfThisType.Select(it => it.IntPos.ManhattanDistanceTo(new IntVec2(x, y))).Min();
+                            DistanceField[Tuple.Create(new IntVec2(x, y), ing)] = minDist;
+                        }
+                    }
                 }
             }
         }
@@ -276,10 +297,19 @@ public class Cart : Spatial
 
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
+            var neededCount = cs1.Ings.Count - cs2.Ings.Count;
 
-            if (Enumerable.SequenceEqual(cs1.Ings, cs2.Ings))
+            if (neededCount == 0)
             {
                 return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
+            }
+            else
+            {
+                var nextIngredient = cs2.Ings[cs1.Ings.Count];
+                var tp = Tuple.Create(cs1.Pos, nextIngredient);
+                if (!DistanceField.ContainsKey(tp)) return 10_000;
+
+                return (uint)(neededCount * 200 + DistanceField[tp]);
             }
 
             return 100;
