@@ -119,6 +119,7 @@ public class Cart : Spatial
 
     public override void _Ready()
     {
+        this.GetTree().Root.FindChildByType<Default>().Paused = true;
         FindThePathEnumerator = Prep().GetEnumerator();
     }
 
@@ -128,9 +129,15 @@ public class Cart : Spatial
         if (FindThePathEnumerator != null)
         {
             if (FindThePathEnumerator.MoveNext())
+            {
+                GD.Print("Finding the path...");
                 return;
+            }
             else
+            {
+                this.GetTree().Root.FindChildByType<Default>().Paused = false;
                 FindThePathEnumerator = null;
+            }
         }
 
         var def = GetTree().Root.FindChildByType<Default>();

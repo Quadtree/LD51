@@ -7,6 +7,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     float Charge;
 
+    public bool Paused = false;
+
     public override void _Ready()
     {
 
@@ -14,7 +16,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public override void _Process(float delta)
     {
-        Charge += delta;
+        if (!Paused) Charge += delta;
 
         if (Charge >= Cart.CART_MOVE_TIME)
         {
