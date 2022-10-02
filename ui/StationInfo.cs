@@ -19,5 +19,15 @@ public class StationInfo : Control
         var sta = this.GetParent<Station>();
         var cam = GetTree().Root.FindChildByType<Camera>();
         RectPosition = cam.UnprojectPosition(sta.GetGlobalLocation() + new Vector3(0, 0, -0.45f));
+
+        var bar = this.FindChildByType<TextureProgress>();
+        var currentTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
+
+        if (currentTick >= sta.StationState.CooldownWillBeUpAt){
+            bar.Visible = false;
+        } else {
+            bar.Visible = true;
+            bar.Value = (sta.StationState.CooldownWillBeUpAt - currentTick) * 100 / sta.Cooldown;
+        }
     }
 }

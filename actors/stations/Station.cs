@@ -10,10 +10,10 @@ public class Station : Spatial
     public Recipe.Ing IngredientDelivered;
 
     [Export]
-    int Cooldown;
+    public int Cooldown;
 
     [Export]
-    int Duration;
+    public int Duration;
 
     [Export]
     public float Cost;
