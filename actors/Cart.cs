@@ -102,6 +102,10 @@ public class Cart : Spatial
                 PlannedActions[node.GameState.CurrentTick - 1] = node.MyAction;
             }
         }
+        else
+        {
+            GD.PushWarning("NO result found!");
+        }
     }
 
 
@@ -345,7 +349,9 @@ public class Cart : Spatial
                     return 10_000;
                 }
 
-                return (uint)(neededCount * 200 + DistanceField[tp]);
+                GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {neededCount * 20 + DistanceField[tp]}");
+
+                return (uint)(neededCount * 20 + DistanceField[tp]);
             }
 
             /*for (var i = 0; i < 10; i++)
