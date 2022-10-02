@@ -48,13 +48,13 @@ public static class IngModels
     static IngModels()
     {
         Data = new Dictionary<Recipe.Ing, IngModel>();
-        Data[Recipe.Ing.Lettuce] = new IngModel { Path = "res://models/lettuce.glb", Height = 0.2f };
-        Data[Recipe.Ing.Protein] = new IngModel { Path = "res://models/protein.glb", Height = 0.2f };
-        Data[Recipe.Ing.Bread] = new IngModel { Path = "res://models/bread.glb", Height = 0.3f };
-        Data[Recipe.Ing.Tomato] = new IngModel { Path = "res://models/tomato.glb", Height = 0.4f };
-        Data[Recipe.Ing.Water] = new IngModel { Path = "res://models/water.glb", Height = 0.8f };
+        Data[Recipe.Ing.Lettuce] = new IngModel { Path = "res://models/lettuce.tscn", Height = 0.2f };
+        Data[Recipe.Ing.Protein] = new IngModel { Path = "res://models/protein.tscn", Height = 0.2f };
+        Data[Recipe.Ing.Bread] = new IngModel { Path = "res://models/bread.tscn", Height = 0.3f };
+        Data[Recipe.Ing.Tomato] = new IngModel { Path = "res://models/tomato.tscn", Height = 0.4f };
+        Data[Recipe.Ing.Water] = new IngModel { Path = "res://models/water.tscn", Height = 0.8f };
 
-        Data[Recipe.Ing.Chop] = new IngModel { Path = "res://models/chop.glb", Height = 0.2f };
-        Data[Recipe.Ing.Cook] = new IngModel { Path = "res://models/cook.glb", Height = 0.4f };
+        Data[Recipe.Ing.Chop] = new IngModel { Path = "res://models/chop.tscn", Height = 0.2f };
+        Data[Recipe.Ing.Cook] = new IngModel { Path = "res://models/cook.tscn", Height = 0.4f };
     }
 }

@@ -107,6 +107,7 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("build_station_3")) LoadStationOnCursor("res://actors/stations/ProteinStation.tscn");
         if (@event.IsActionPressed("build_station_4")) LoadStationOnCursor("res://actors/stations/TomatoStation.tscn");
         if (@event.IsActionPressed("build_station_5")) LoadStationOnCursor("res://actors/stations/WaterStation.tscn");
+        if (@event.IsActionPressed("build_station_6")) LoadStationOnCursor("res://actors/stations/CookStation.tscn");
 
         if (@event.IsActionPressed("cancel_plan"))
         {
