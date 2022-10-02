@@ -37,7 +37,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (StationOnCursor != null)
         {
-            StationOnCursor.SetGlobalLocation(Picking.PickPointAtCursor(this).Value);
+            StationOnCursor.Reposition(Picking.PickPointAtCursor(this).Value);
         }
     }
 
