@@ -56,6 +56,7 @@ public class Default : Spatial, CartAction.IMutableGameState
             var rce = GD.Load<PackedScene>("res://actors/UpcomingRecipe.tscn").Instance<UpcomingRecipe>();
             rce.Recipe = it;
             UpcomingRecipes.Add(rce);
+            AddChild(rce);
         }
     }
 
