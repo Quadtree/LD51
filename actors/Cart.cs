@@ -133,6 +133,10 @@ public class Cart : Spatial
             {
                 this.GetTree().Root.FindChildByType<Default>().Paused = false;
                 FindThePathEnumerator = null;
+                if (PlannedActions.Count == 0)
+                {
+                    QueueFree();
+                }
             }
         }
 
