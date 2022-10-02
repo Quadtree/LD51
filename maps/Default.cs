@@ -77,7 +77,7 @@ public class Default : Spatial, CartAction.IMutableGameState
             GD.Print($"CurrentTick={CurrentTick}");
         }
 
-        var timeLeft = 1 - ((CurrentTick / 20f) + Charge / Cart.CART_MOVE_TIME);
+        var timeLeft = 1 - ((CurrentTick % 20 + (Charge / Cart.CART_MOVE_TIME)) / 20f);
         GD.Print(timeLeft);
 
         if (StationOnCursor != null)
