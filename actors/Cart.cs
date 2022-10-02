@@ -78,8 +78,8 @@ public class Cart : Spatial
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
         foreach (var it in aStar.FindPath(
-            new AStarNode(cgs, null),
-            new AStarNode(tgs, null),
+            new AStarNode(cgs, null, ID),
+            new AStarNode(tgs, null, ID),
             (it) =>
             {
                 AT.NotNull(it.GameState);
@@ -208,11 +208,14 @@ public class Cart : Spatial
 
         public ulong NodeID;
 
-        public AStarNode(GameState gs, CartAction myAction)
+        public int MyID;
+
+        public AStarNode(GameState gs, CartAction myAction, int myId)
         {
             NodeID = NextNodeID++;
             GameState = gs;
             MyAction = myAction;
+            MyID = myId;
         }
 
         public GameState GameState;
@@ -222,12 +225,32 @@ public class Cart : Spatial
 
         public bool Equals(AStarNode other)
         {
-            return NodeID == other.NodeID;
+            return CompareTo(other) == 0;
         }
 
         public int CompareTo(AStarNode other)
         {
-            return NodeID.CompareTo(other.NodeID);
+            var s1 = GameState.CartStates[MyID];
+            var s2 = other.GameState.CartStates[MyID];
+
+            if (s1.Facing != s2.Facing)
+            {
+                return s1.Facing.CompareTo(s2.Facing);
+            }
+            else if (s1.Pos.x != s2.Pos.x)
+            {
+                return s1.Pos.x.CompareTo(s2.Pos.x);
+            }
+            else if (s1.Pos.y != s2.Pos.y)
+            {
+                return s1.Pos.y.CompareTo(s2.Pos.y);
+            }
+            else if (s1.Ings.Count != s2.Ings.Count)
+            {
+                return s1.Ings.Count.CompareTo(s2.Ings.Count);
+            }
+
+            return 0;
         }
     }
 
@@ -309,7 +332,8 @@ public class Cart : Spatial
 
             return new AStarNode(
                 ngs,
-                ourAction
+                ourAction,
+                Cart.ID
             );
         }
 
