@@ -11,5 +11,5 @@ dest_files=[ "res://.import/blade.ogg-6495243d003706588dc52a90ea198669.oggstr" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
