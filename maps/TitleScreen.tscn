@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/huge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://maps/NormalLevelButton.cs" type="Script" id=3]
+[ext_resource path="res://maps/HardLevelButton.cs" type="Script" id=4]
+[ext_resource path="res://maps/RandomLevelButton.cs" type="Script" id=5]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -60,6 +62,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 2 )
 text = "Start Hard Level"
+script = ExtResource( 4 )
 
 [node name="RandomLevelButton" type="Button" parent="HBoxContainer"]
 margin_left = 969.0
@@ -70,3 +73,4 @@ size_flags_horizontal = 6
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 2 )
 text = "Start Random Level"
+script = ExtResource( 5 )
