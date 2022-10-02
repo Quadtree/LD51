@@ -132,7 +132,10 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
             GD.Print("place_plan");
-            if (StationOnCursor.Cost <= Money && !StationOnCursor.GetBlocked().ToArray().Intersect(GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).SelectMany(it => it.GetBlocked())).Any())
+            if (StationOnCursor.Cost <= Money &&
+            !StationOnCursor.GetBlocked().ToArray().Intersect(GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).SelectMany(it => it.GetBlocked())).Any() &&
+            StationOnCursor.IntPos != Cart.ExitPoint &&
+            StationOnCursor.IntPos != Cart.StartPoint)
             {
                 Money -= StationOnCursor.Cost;
                 StationOnCursor.Built = true;
