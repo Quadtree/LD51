@@ -33,7 +33,7 @@ public class Cart : Spatial
         {
             Ings = new Recipe.Ing[]{
                 Recipe.Ing.Lettuce,
-                Recipe.Ing.Chop,
+                //Recipe.Ing.Chop,
             }
         };
 
@@ -327,9 +327,9 @@ public class Cart : Spatial
             //ulong matchingIngs = 0;
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
-            var neededCount = cs1.Ings.Count - cs2.Ings.Count;
+            var neededCount = cs2.Ings.Count - cs1.Ings.Count;
 
-            if (neededCount == 0)
+            if (neededCount <= 0)
             {
                 return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
             }
