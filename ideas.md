@@ -49,9 +49,9 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Lose screen
 - Prevent placing stations on top of eachother
 - Score screen
+- Final graphics
 
 ### TODO
-- Final graphics
 - Sound
 - Prevent carts from overlapping
 
