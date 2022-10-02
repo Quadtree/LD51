@@ -16,6 +16,8 @@ public class StationInfo : Control
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        RectPosition = GetTree().Root.FindChildByType<Camera>().UnprojectPosition(this.GetParent<Station>().GetGlobalLocation() + new Vector3(0, 0, -0.45f));
+        var sta = this.GetParent<Station>();
+        var cam = GetTree().Root.FindChildByType<Camera>();
+        RectPosition = cam.UnprojectPosition(sta.GetGlobalLocation() + new Vector3(0, 0, -0.45f));
     }
 }
