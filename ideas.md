@@ -40,11 +40,14 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Cart/cart collision
 - Display cooldown of buildings
 - Carts disappear when they reach the end
+- Final UI
 
 ### TODO
+- Instantly fail if distance field is empty
+- Figure out lighting issue
+- Figure out UI freeze issue
 - Multiple levels
 - Final graphics
-- Final UI
 - Sound
 - Title screen
 - Win screen
