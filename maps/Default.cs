@@ -49,6 +49,18 @@ public class Default : Spatial, CartAction.IMutableGameState
         {
             LoadStationOnCursor("res://actors/stations/LettuceStation.tscn");
         }
+
+        if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
+        {
+            StationOnCursor.Built = true;
+            // TODO: Money!
+            StationOnCursor = null;
+        }
+
+        if (@event.IsActionPressed("cancel_plan"))
+        {
+            StationOnCursor = null;
+        }
     }
 
     void LoadStationOnCursor(string path)
