@@ -49,6 +49,11 @@ public class Station : Spatial
         StationState.Duration = Duration;
         StationState.Ing = IngredientDelivered;
         StationState.ID = ID;
+
+        var rep = GD.Load<PackedScene>(IngModels.Data[IngredientDelivered].Path).Instance<Spatial>();
+        rep.Translation = new Vector3(0, 0, 0);
+        rep.Scale = Vector3.One * 0.1f;
+        this.FindChildByName<Spatial>("Top").AddChild(rep);
     }
 
     //public struct StationUse

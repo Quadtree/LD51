@@ -18,3 +18,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427756, 0 )
 mesh = SubResource( 1 )
 
 [node name="Control" parent="." instance=ExtResource( 3 )]
+
+[node name="Top" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06256, 0 )
