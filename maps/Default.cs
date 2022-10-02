@@ -71,6 +71,7 @@ public class Default : Spatial, CartAction.IMutableGameState
             if (CurrentTick % 20 == 0 && CurrentTick >= 20)
             {
                 GD.Print("Spawning!");
+                UpcomingRecipes[0].QueueFree();
                 UpcomingRecipes.RemoveAt(0);
                 this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
             }
