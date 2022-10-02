@@ -306,8 +306,13 @@ public class Cart : Spatial
             else
             {
                 var nextIngredient = cs2.Ings[cs1.Ings.Count];
+                AT.True(nextIngredient != Recipe.Ing.None);
                 var tp = Tuple.Create(cs1.Pos, nextIngredient);
-                if (!DistanceField.ContainsKey(tp)) return 10_000;
+                if (!DistanceField.ContainsKey(tp))
+                {
+                    GD.PushWarning($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
+                    return 10_000;
+                }
 
                 return (uint)(neededCount * 200 + DistanceField[tp]);
             }
