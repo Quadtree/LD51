@@ -29,6 +29,8 @@ public class Cart : Spatial
 
     public IEnumerator<object> FindThePathEnumerator;
 
+    public List<Spatial> StackedFood = new List<Spatial>();
+
     private IEnumerable<object> Prep()
     {
         Recipe = GetTree().Root.FindChildByType<Default>().GetNextRecipe();
@@ -168,6 +170,23 @@ public class Cart : Spatial
             {
                 this.SetGlobalLocation(this.GetGlobalLocation() + deltaPos.Normalized() * speed);
             }
+        }
+
+        if (StackedFood.Count < CurrentCartState.Ings.Count)
+        {
+            var foodToAddType = CurrentCartState.Ings[StackedFood.Count];
+            AT.True(foodToAddType != Recipe.Ing.None);
+            AT.Contains(IngModels.Data.Keys, foodToAddType);
+            var nextFoodData = IngModels.Data[foodToAddType];
+
+            var nf = GD.Load<PackedScene>(nextFoodData.Path).Instance<Spatial>();
+            nf.Translation = new Vector3(0, nextFoodData.Height, 0);
+            if (StackedFood.Count > 0)
+                StackedFood.Last().AddChild(nf);
+            else
+                AddChild(nf);
+
+            StackedFood.Add(nf);
         }
     }
 
