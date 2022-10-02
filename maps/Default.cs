@@ -68,7 +68,7 @@ public class Default : Spatial, CartAction.IMutableGameState
             var rce = GD.Load<PackedScene>("res://ui/BuyStationButton.tscn").Instance<BuyStationButton>();
             rce.Type = it;
             AddChild(rce);
-            rce.SetGlobalLocation(new Vector3(12.5f, 0, n * 1.5f));
+            rce.SetGlobalLocation(new Vector3(12.5f, 0, n * 1f));
             ++n;
         }
     }
