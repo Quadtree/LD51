@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class Station : Spatial
@@ -28,6 +29,8 @@ public class Station : Spatial
 
     public override void _Ready()
     {
+        ID = GetTree().Root.FindChildrenByType<Station>().Select(it => it.ID).Max() + 1;
+
         StationState.Cooldown = Cooldown;
         StationState.Duration = Duration;
         StationState.Ing = IngredientDelivered;
