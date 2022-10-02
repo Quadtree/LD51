@@ -18,6 +18,7 @@ public struct StationState
         var ncs = gs.GetCartState(CartID).Clone();
 
         ncs.Ings.Add(Ing);
+        ncs.ActionTime = Duration;
 
         gs.SetCartState(CartID, ncs);
 
