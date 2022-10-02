@@ -335,6 +335,7 @@ public class Cart : Spatial
 
             if (neededCount <= 0)
             {
+                GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos)}");
                 return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
             }
             else
