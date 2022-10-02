@@ -67,5 +67,8 @@ public static class IngModels
         Data[Recipe.Ing.Bread] = new IngModel { Path = "res://models/bread.glb", Height = 0.3f };
         Data[Recipe.Ing.Tomato] = new IngModel { Path = "res://models/tomato.glb", Height = 0.4f };
         Data[Recipe.Ing.Water] = new IngModel { Path = "res://models/water.glb", Height = 0.8f };
+
+        Data[Recipe.Ing.Chop] = new IngModel { Path = "res://models/chop.glb", Height = 0.2f };
+        Data[Recipe.Ing.Cook] = new IngModel { Path = "res://models/cook.glb", Height = 0.4f };
     }
 }
