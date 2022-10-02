@@ -16,8 +16,9 @@ public class UpcomingRecipe : Spatial
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //
-    //  }
+    public override void _Process(float delta)
+    {
+        var pos = GetTree().Root.FindChildByType<Camera>().UnprojectPosition(this.GetGlobalLocation());
+        this.FindChildByType<Label>().RectPosition = pos;
+    }
 }
