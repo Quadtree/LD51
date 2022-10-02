@@ -132,7 +132,7 @@ public class Default : Spatial, CartAction.IMutableGameState
     {
         base._Input(@event);
 
-        if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
+        if (@event.IsActionPressed("place_plan") && StationOnCursor != null && StationOnCursor.IntPos.x >= 0 && StationOnCursor.IntPos.y >= 0 && StationOnCursor.IntPos.x < 12 && StationOnCursor.IntPos.y < 8)
         {
             GD.Print("place_plan");
 
