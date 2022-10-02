@@ -70,6 +70,7 @@ public class Default : Spatial, CartAction.IMutableGameState
     void LoadStationOnCursor(string path)
     {
         StationOnCursor = GD.Load<PackedScene>(path).Instance<Station>();
+        StationOnCursor.Built = false;
         GetTree().CurrentScene.AddChild(StationOnCursor);
 
         foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())

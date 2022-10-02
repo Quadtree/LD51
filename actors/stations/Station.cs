@@ -15,7 +15,7 @@ public class Station : Spatial
     [Export]
     int Duration;
 
-    public bool Built;
+    public bool Built = true;
 
     public StationState StationState;
 
