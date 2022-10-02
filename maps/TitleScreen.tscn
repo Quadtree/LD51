@@ -43,8 +43,8 @@ margin_right = -0.84021
 margin_bottom = -0.0400391
 
 [node name="NormalLevelButton" type="Button" parent="HBoxContainer"]
-margin_left = 72.0
-margin_right = 372.0
+margin_left = 71.0
+margin_right = 371.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 size_flags_horizontal = 6
@@ -54,8 +54,8 @@ text = "Start Normal Level"
 script = ExtResource( 3 )
 
 [node name="HardLevelButton" type="Button" parent="HBoxContainer"]
-margin_left = 520.0
-margin_right = 820.0
+margin_left = 521.0
+margin_right = 821.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 size_flags_horizontal = 6
@@ -65,8 +65,8 @@ text = "Start Hard Level"
 script = ExtResource( 4 )
 
 [node name="RandomLevelButton" type="Button" parent="HBoxContainer"]
-margin_left = 969.0
-margin_right = 1269.0
+margin_left = 971.0
+margin_right = 1271.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 size_flags_horizontal = 6
