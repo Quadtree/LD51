@@ -22,6 +22,7 @@ public class Cart : Spatial
     public Dictionary<int, CartAction> PlannedActions = new Dictionary<int, CartAction>();
 
     public IntVec2 ExitPoint => new IntVec2(11, 4);
+    public IntVec2 StartPoint => new IntVec2(0, 4);
 
     public Vector3 PosToMoveTo;
     public float BearingToTurnTo;
@@ -337,7 +338,7 @@ public class Cart : Spatial
                 var nextIngredient = cs2.Ings[cs1.Ings.Count];
                 AT.DoesNotContain(cs2.Ings, Recipe.Ing.None);
                 AT.True(nextIngredient != Recipe.Ing.None);
-                var tp = Tuple.Create(cs1.Pos, nextIngredient);
+                var tp = Tuple.Create(cs1.Pos.x != -10 ? cs1.Pos : Cart.StartPoint, nextIngredient);
                 if (!DistanceField.ContainsKey(tp))
                 {
                     GD.PushWarning($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
