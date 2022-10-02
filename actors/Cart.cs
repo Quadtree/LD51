@@ -33,7 +33,7 @@ public class Cart : Spatial
         {
             Ings = new Recipe.Ing[]{
                 Recipe.Ing.Lettuce,
-                //Recipe.Ing.Chop,
+                Recipe.Ing.Chop,
             }
         };
 
