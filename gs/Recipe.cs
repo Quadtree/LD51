@@ -31,14 +31,18 @@ public class Recipes
     public static Recipe ChoppedSalad = new Recipe("Chopped Salad", Recipe.Ing.Lettuce, Recipe.Ing.Chop);
     public static Recipe MixedSalad = new Recipe("Mixed Salad", Recipe.Ing.Lettuce, Recipe.Ing.Tomato, Recipe.Ing.Chop);
     public static Recipe Soup = new Recipe("Soup", Recipe.Ing.Water, Recipe.Ing.Tomato, Recipe.Ing.Cook);
-    public static Recipe Sandwich = new Recipe("Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein);
+    public static Recipe HeartySoup = new Recipe("HeartySoup", Recipe.Ing.Water, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Cook);
+    public static Recipe MeatAndBread = new Recipe("Meat and Bread", Recipe.Ing.Bread, Recipe.Ing.Protein);
+    public static Recipe Sandwich = new Recipe("Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Bread);
     public static Recipe ToastedSandwich = new Recipe("Toasted Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Cook);
+    public static Recipe MegaSandwich = new Recipe("Mega Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Protein, Recipe.Ing.Lettuce, Recipe.Ing.Bread);
     public static Recipe Water = new Recipe("Water", Recipe.Ing.Water);
     public static Recipe Tea = new Recipe("Tea", Recipe.Ing.Water, Recipe.Ing.Cook);
     public static Recipe HugeSalad = new Recipe("HugeSalad", Recipe.Ing.Lettuce, Recipe.Ing.Lettuce, Recipe.Ing.Lettuce);
 
+
     public static Recipe[] AllRecipes = new Recipe[]{
-SimpleSalad,ChoppedSalad,MixedSalad,Soup,Sandwich,ToastedSandwich,Water,Tea,HugeSalad
+SimpleSalad,ChoppedSalad,MixedSalad,Soup,Sandwich,ToastedSandwich,Water,Tea,HugeSalad,MeatAndBread,HeartySoup,MegaSandwich
     };
 }
 
