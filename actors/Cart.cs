@@ -129,6 +129,9 @@ public class Cart : Spatial
         }
     }
 
+    bool ShouldDelete = false;
+    bool ShouldUnpause = false;
+
     void PathFindingThreadEntry()
     {
         GD.Print("Pathfinding thread starting");
@@ -140,12 +143,12 @@ public class Cart : Spatial
             }
             else
             {
-                this.GetTree().Root.FindChildByType<Default>().Paused = false;
+                ShouldUnpause = true;
                 FindThePathEnumerator = null;
                 if (PlannedActions.Count == 0)
                 {
-                    Util.SpawnOneShotSound("res://sounds/cart_lost.wav", this);
-                    QueueFree();
+                    ShouldDelete = true;
+                    return;
                 }
             }
         }
@@ -155,9 +158,19 @@ public class Cart : Spatial
 
     System.Threading.Thread PathFindingThread;
 
-
     public override void _Process(float delta)
     {
+        if (ShouldUnpause)
+        {
+            ShouldUnpause = false;
+            this.GetTree().Root.FindChildByType<Default>().Paused = false;
+        }
+        if (ShouldDelete)
+        {
+            Util.SpawnOneShotSound("res://sounds/cart_lost.wav", this);
+            QueueFree();
+        }
+
         if (PathFindingThread != null) return;
 
         if (FindThePathEnumerator != null)
@@ -173,8 +186,8 @@ public class Cart : Spatial
                 FindThePathEnumerator = null;
                 if (PlannedActions.Count == 0)
                 {
-                    Util.SpawnOneShotSound("res://sounds/cart_lost.wav", this);
-                    QueueFree();
+                    ShouldDelete = true;
+                    return;
                 }
             }
         }
