@@ -50,6 +50,7 @@ public class Cart : Spatial
         };
 
         var cgs = new GameState();
+        cgs.CurrentTick = StartTick;
         foreach (var it in GetTree().Root.FindChildrenByType<Cart>())
         {
             cgs.CartStates[it.ID] = it.CurrentCartState;
@@ -61,6 +62,7 @@ public class Cart : Spatial
 
 
         var tgs = new GameState();
+        tgs.CurrentTick = StartTick;
         foreach (var it in GetTree().Root.FindChildrenByType<Cart>())
         {
             tgs.CartStates[it.ID] = it.CurrentCartState;
