@@ -91,7 +91,7 @@ public class Cart : Spatial
 
                 return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == ExitPoint;
             },
-            maxIteration: 25_000
+            maxIteration: 250_000
         ))
         {
             yield return it;

@@ -77,6 +77,9 @@ public class Default : Spatial, CartAction.IMutableGameState
         {
             Charge -= Cart.CART_MOVE_TIME;
 
+            CurrentTick++;
+            GD.Print($"CurrentTick={CurrentTick}");
+
             if (CurrentTick % 20 == 0 && CurrentTick >= 20)
             {
                 if (UpcomingRecipes.Count > 0)
@@ -89,12 +92,9 @@ public class Default : Spatial, CartAction.IMutableGameState
                     cart.SetGlobalLocation(new Vector3(-10, 0, -10));
                 }
             }
-
-            CurrentTick++;
-            GD.Print($"CurrentTick={CurrentTick}");
         }
 
-        var timeLeft = 1 - ((CurrentTick % 20 + (Charge / Cart.CART_MOVE_TIME)) / 20f);
+        var timeLeft = !Paused ? 1 - ((CurrentTick % 20 + (Charge / Cart.CART_MOVE_TIME)) / 20f) : 0;
 
         foreach (var it in UpcomingRecipes)
         {
