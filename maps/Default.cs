@@ -136,7 +136,7 @@ public class Default : Spatial, CartAction.IMutableGameState
         {
             GD.Print("place_plan");
 
-            Util.SpawnOneShotSound("res://sounds/place.wav", this);
+            Util.SpawnOneShotSound("res://sounds/drop.ogg", this);
 
             if (StationOnCursor.Cost <= Money &&
             !StationOnCursor.GetBlocked().ToArray().Intersect(GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).SelectMany(it => it.GetBlocked())).Any() &&
