@@ -436,7 +436,7 @@ public class Cart : Spatial
                 var tp = Tuple.Create(cs1.Pos.x != -10 ? cs1.Pos : Cart.StartPoint, nextIngredient);
                 if (!DistanceField.ContainsKey(tp))
                 {
-                    GD.Print($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
+                    GD.PushWarning($"Can't seem to find {tp} in DistanceField, we have {cs1.Ings.Count} ingredients");
                     Abort = true;
                     return 10_000;
                 }

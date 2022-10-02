@@ -37,6 +37,6 @@ public class BuyStationButton : Spatial
     public override void _Process(float delta)
     {
         var pos = GetTree().Root.FindChildByType<Camera>().UnprojectPosition(this.GetGlobalLocation());
-        this.FindChildByType<Button>().RectPosition = pos;
+        this.FindChildByType<Button>().RectPosition = pos - new Vector2(0, 40);
     }
 }
