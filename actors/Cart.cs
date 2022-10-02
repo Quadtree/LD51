@@ -315,6 +315,8 @@ public class Cart : Spatial
 
         public IEnumerable<AStarNode> GetNeighbors(AStarNode node)
         {
+            var myCartState = node.GameState.CartStates[Cart.ID];
+
             if (!Abort)
             {
                 if (node.GameState.CurrentTick < node.GameState.GetCartState(Cart.ID).CanTakeNextActionAt)
@@ -326,7 +328,7 @@ public class Cart : Spatial
 
                     if (node.GameState.CurrentTick < Cart.StartTick + CART_MAX_TICKS)
                     {
-                        if (node.GameState.CartStates[Cart.ID].Pos.x < -5)
+                        if (myCartState.Pos.x < -5)
                         {
                             // we haven't entered the map yet
 
@@ -336,17 +338,17 @@ public class Cart : Spatial
                         else
                         {
                             var deltas = new IntVec2[]{
-                            new IntVec2(1, 0),
-                            new IntVec2(0, 1),
-                            new IntVec2(-1, 0),
-                            new IntVec2(0, -1),
-                        };
+                                new IntVec2(1, 0),
+                                new IntVec2(0, 1),
+                                new IntVec2(-1, 0),
+                                new IntVec2(0, -1),
+                            };
 
                             for (var i = 0; i < 4; ++i)
                             {
-                                var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                                var np = myCartState.Pos + deltas[i];
                                 if (!BlockedMap.ContainsKey(np) &&
-                                    (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) &&
+                                    (i == myCartState.Facing || myCartState.TurnsLeft > 0) &&
                                     np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT &&
                                     (
                                         np == ExitPoint ||
@@ -358,9 +360,9 @@ public class Cart : Spatial
                                 }
                             }
 
-                            if (!Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
+                            if (!Enumerable.SequenceEqual(myCartState.Ings, Cart.Recipe.Ings))
                             {
-                                var cs1 = node.GameState.CartStates[Cart.ID].Ings;
+                                var cs1 = myCartState.Ings;
                                 var recipeNeeded = Cart.Recipe.Ings;
                                 var nextIngredient = cs1.Count < recipeNeeded.Length ? recipeNeeded[cs1.Count] : Recipe.Ing.None;
 
@@ -368,7 +370,7 @@ public class Cart : Spatial
                                 {
                                     for (var i = 0; i < 4; ++i)
                                     {
-                                        var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                                        var np = myCartState.Pos + deltas[i];
                                         if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient && node.GameState.GetStationState(BlockedMap[np].ID).CooldownWillBeUpAt <= node.GameState.CurrentTick)
                                         {
                                             //GD.Print("TRYING!");
@@ -378,7 +380,7 @@ public class Cart : Spatial
                                 }
                                 else
                                 {
-                                    GD.PushError($"We think we're done, but {String.Join(",", node.GameState.CartStates[Cart.ID].Ings)} != {String.Join(",", Cart.Recipe.Ings)}");
+                                    GD.PushError($"We think we're done, but {String.Join(",", myCartState.Ings)} != {String.Join(",", Cart.Recipe.Ings)}");
                                 }
                             }
                         }
