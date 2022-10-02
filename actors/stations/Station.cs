@@ -29,6 +29,15 @@ public class Station : Spatial
         yield return IntPos;
     }
 
+    public void Reposition(Vector3 v3)
+    {
+        this.SetGlobalLocation(new Vector3(
+            Mathf.RoundToInt(v3.x),
+            0,
+            Mathf.RoundToInt(v3.z)
+        ));
+    }
+
     public override void _Ready()
     {
         ID = GetTree().Root.FindChildrenByType<Station>().Select(it => it.ID).Max() + 1;
