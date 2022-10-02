@@ -313,7 +313,11 @@ public class Cart : Spatial
                             if (!BlockedMap.ContainsKey(np) &&
                                 (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) &&
                                 np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT &&
-                                !node.GameState.CartStates.Any(it => it.Value.Pos == np))
+                                (
+                                    np == ExitPoint ||
+                                    !node.GameState.CartStates.Any(it => it.Value.Pos == np)
+                                )
+                                )
                             {
                                 yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
                             }
