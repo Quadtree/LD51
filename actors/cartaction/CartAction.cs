@@ -12,5 +12,5 @@ public abstract class CartAction
         int CurrentTick { get; }
     }
 
-    public abstract void Execute(IMutableGameState state);
+    public abstract void Execute(IMutableGameState state, bool printDebugData = false);
 }

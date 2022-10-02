@@ -11,7 +11,7 @@ public struct StationState
 
     public int CooldownWillBeUpAt;
 
-    public void UseOn(CartAction.IMutableGameState gs, int CartID)
+    public void UseOn(CartAction.IMutableGameState gs, int CartID, bool printDebugData = false)
     {
         AT.True(Ing != Recipe.Ing.None);
         AT.True(gs.CurrentTick >= CooldownWillBeUpAt);
