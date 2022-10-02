@@ -185,8 +185,8 @@ public class Cart : Spatial
                 StackedFood.Last().AddChild(nf);
             else
             {
-                nf.Scale = new Vector3(0.1f, 0.1f, 0.1f);
-                AddChild(nf);
+                //nf.Scale = new Vector3(0.1f, 0.1f, 0.1f);
+                this.FindChildByName<Spatial>("LoadingPoint").AddChild(nf);
             }
 
             StackedFood.Add(nf);
