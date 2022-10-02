@@ -165,6 +165,10 @@ public class Cart : Spatial
             if (deltaPos.Length() < speed || deltaPos.Length() > 1.5f)
             {
                 this.SetGlobalLocation(PosToMoveTo);
+                if (CurrentCartState.Pos == ExitPoint)
+                {
+                    QueueFree();
+                }
             }
             else
             {
