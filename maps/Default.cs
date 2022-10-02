@@ -72,10 +72,13 @@ public class Default : Spatial, CartAction.IMutableGameState
 
             if (CurrentTick % 20 == 0 && CurrentTick >= 20)
             {
-                GD.Print("Spawning!");
-                UpcomingRecipes[0].QueueFree();
-                UpcomingRecipes.RemoveAt(0);
-                this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
+                if (UpcomingRecipes.Count > 0)
+                {
+                    GD.Print("Spawning!");
+                    UpcomingRecipes[0].QueueFree();
+                    UpcomingRecipes.RemoveAt(0);
+                    this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
+                }
             }
 
             CurrentTick++;
@@ -95,7 +98,12 @@ public class Default : Spatial, CartAction.IMutableGameState
             StationOnCursor.Reposition(Picking.PickPointAtCursor(this).Value);
         }
 
-        Money += delta * 10;
+        if (!Paused) Money += delta * 10;
+
+        if (UpcomingRecipes.Count == 0 && !GetTree().Root.FindChildrenByType<Cart>().Any())
+        {
+            GetTree().ChangeScene("res://maps/ScoreScreen.tscn");
+        }
     }
 
     public override void _UnhandledInput(InputEvent @event)
