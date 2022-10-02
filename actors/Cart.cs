@@ -27,7 +27,9 @@ public class Cart : Spatial
     public Vector3 PosToMoveTo;
     public float BearingToTurnTo;
 
-    public override void _Ready()
+    public IEnumerator<object> FindThePathEnumerator;
+
+    private IEnumerable<object> Prep()
     {
         Recipe = new Recipe
         {
@@ -79,7 +81,7 @@ public class Cart : Spatial
 
         var aStar = new AStarIndexed<AStarNode>(new CartModel(this));
 
-        var nodes = aStar.FindPath(
+        foreach (var it in aStar.FindPath(
             new AStarNode(cgs, null),
             new AStarNode(tgs, null),
             (it) =>
@@ -94,7 +96,12 @@ public class Cart : Spatial
                 return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == ExitPoint;
             },
             maxIteration: 50_000
-        );
+        ))
+        {
+            yield return it;
+        }
+
+        var nodes = aStar.LastPath;
 
         if (nodes != null)
         {
@@ -110,9 +117,22 @@ public class Cart : Spatial
         }
     }
 
+    public override void _Ready()
+    {
+        FindThePathEnumerator = Prep().GetEnumerator();
+    }
+
 
     public override void _Process(float delta)
     {
+        if (FindThePathEnumerator != null)
+        {
+            if (FindThePathEnumerator.MoveNext())
+                return;
+            else
+                FindThePathEnumerator = null;
+        }
+
         var def = GetTree().Root.FindChildByType<Default>();
         var ct = def.CurrentTick;
         if (PlannedActions.ContainsKey(ct))
@@ -350,7 +370,7 @@ public class Cart : Spatial
 
             if (neededCount <= 0)
             {
-                GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos)}");
+                //GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos)}");
                 return (uint)Cart.ExitPoint.ManhattanDistanceTo(cs1.Pos);
             }
             else
@@ -365,7 +385,7 @@ public class Cart : Spatial
                     return 10_000;
                 }
 
-                GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {neededCount * 20 + DistanceField[tp]}");
+                //GD.Print($"{cs1.Pos} - {cs1.Ings.Count} - {neededCount * 20 + DistanceField[tp]}");
 
                 return (uint)(neededCount * 20 + DistanceField[tp]);
             }
