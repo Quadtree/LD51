@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://maps/Ground.cs" type="Script" id=1]
 [ext_resource path="res://textures/floor_tile.png" type="Texture" id=2]
 [ext_resource path="res://textures/floor_tile_n.png" type="Texture" id=3]
+[ext_resource path="res://actors/StartPos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://maps/Default.cs" type="Script" id=5]
 [ext_resource path="res://ui/InGameUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://default_env.tres" type="Environment" id=7]
+[ext_resource path="res://actors/EndPos.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 2 )
@@ -60,3 +62,9 @@ shape = SubResource( 6 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InGameUI" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="StartPos" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, 0, 4 )
+
+[node name="EndPos" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.15, 0, 4 )
