@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://maps/Ground.cs" type="Script" id=1]
 [ext_resource path="res://textures/floor_tile.png" type="Texture" id=2]
 [ext_resource path="res://textures/floor_tile_n.png" type="Texture" id=3]
 [ext_resource path="res://actors/stations/LettuceStation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://maps/Default.cs" type="Script" id=5]
+[ext_resource path="res://ui/InGameUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://default_env.tres" type="Environment" id=7]
 [ext_resource path="res://actors/stations/ChopStation.tscn" type="PackedScene" id=8]
 
@@ -64,3 +65,5 @@ collision_mask = 16385
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 6 )
+
+[node name="InGameUI" parent="." instance=ExtResource( 6 )]
