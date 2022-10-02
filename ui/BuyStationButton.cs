@@ -17,7 +17,10 @@ public class BuyStationButton : Spatial
         rep.Scale = Vector3.One * 0.1f;
         AddChild(rep);
 
-        this.FindChildByType<Button>().Text = Type.ToString() + " Station";
+        var ts = GD.Load<PackedScene>($"res://actors/stations/{Type}Station.tscn").Instance<Station>();
+
+        this.FindChildByType<Button>().Text = Type.ToString() + $" ({ts.Cost})";
+        this.FindChildByType<Button>().HintTooltip = $"Cost: {ts.Cost}\nUse Time: {ts.Duration + 1}\nCooldown: {ts.Cooldown + 1}";
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
