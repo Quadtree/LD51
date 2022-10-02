@@ -19,6 +19,14 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (Charge >= Cart.CART_MOVE_TIME)
         {
             Charge -= Cart.CART_MOVE_TIME;
+
+            if (CurrentTick % 20 == 0)
+            {
+                GD.Print("Spawning!");
+                this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
+            }
+
+
             CurrentTick++;
             GD.Print($"CurrentTick={CurrentTick}");
         }
