@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://fonts/huge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/normal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://maps/NormalLevelButton.cs" type="Script" id=3]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -48,6 +49,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 2 )
 text = "Start Normal Level"
+script = ExtResource( 3 )
 
 [node name="HardLevelButton" type="Button" parent="HBoxContainer"]
 margin_left = 520.0

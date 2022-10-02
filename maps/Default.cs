@@ -18,6 +18,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public List<Recipe> RecipeQueue = new List<Recipe>();
 
+    public static List<Recipe> NextRecipeQueue;
+
     public List<UpcomingRecipe> UpcomingRecipes = new List<UpcomingRecipe>();
 
     public Recipe GetNextRecipe()
@@ -29,29 +31,35 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public override void _Ready()
     {
-        RecipeQueue.Add(Recipes.Soup);
-
-        RecipeQueue.Add(Recipes.SimpleSalad);
-        RecipeQueue.Add(Recipes.SimpleSalad);
-        RecipeQueue.Add(Recipes.ChoppedSalad);
-        RecipeQueue.Add(Recipes.SimpleSalad);
-        RecipeQueue.Add(Recipes.ChoppedSalad);
-        RecipeQueue.Add(Recipes.ChoppedSalad);
-        RecipeQueue.Add(Recipes.ChoppedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.Soup);
-        RecipeQueue.Add(Recipes.Soup);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.Soup);
-        RecipeQueue.Add(Recipes.Soup);
-        RecipeQueue.Add(Recipes.SimpleSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
-        RecipeQueue.Add(Recipes.MixedSalad);
+        if (NextRecipeQueue == null)
+        {
+            RecipeQueue.Add(Recipes.SimpleSalad);
+            RecipeQueue.Add(Recipes.SimpleSalad);
+            RecipeQueue.Add(Recipes.ChoppedSalad);
+            RecipeQueue.Add(Recipes.SimpleSalad);
+            RecipeQueue.Add(Recipes.ChoppedSalad);
+            RecipeQueue.Add(Recipes.ChoppedSalad);
+            RecipeQueue.Add(Recipes.ChoppedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.Soup);
+            RecipeQueue.Add(Recipes.Soup);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.Soup);
+            RecipeQueue.Add(Recipes.Soup);
+            RecipeQueue.Add(Recipes.SimpleSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+            RecipeQueue.Add(Recipes.MixedSalad);
+        }
+        else
+        {
+            RecipeQueue = NextRecipeQueue;
+            NextRecipeQueue = null;
+        }
 
         foreach (var it in RecipeQueue)
         {
