@@ -21,8 +21,8 @@ public class Cart : Spatial
 
     public Dictionary<int, CartAction> PlannedActions = new Dictionary<int, CartAction>();
 
-    public IntVec2 ExitPoint => new IntVec2(11, 4);
-    public IntVec2 StartPoint => new IntVec2(0, 4);
+    public static IntVec2 ExitPoint => new IntVec2(11, 4);
+    public static IntVec2 StartPoint => new IntVec2(0, 4);
 
     public Vector3 PosToMoveTo;
     public float BearingToTurnTo;

@@ -13,6 +13,12 @@ public class CAMove : CartAction
             newCartState.TurnsLeft--;
             //AT.True(newCartState.TurnsLeft >= 0);
         }
+
+        if (newCartState.Pos == Cart.ExitPoint)
+        {
+            newCartState.Pos = new IntVec2(100, 0);
+        }
+
         state.SetCartState(CartID, newCartState);
     }
 
