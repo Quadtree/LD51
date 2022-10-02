@@ -9,6 +9,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public bool Paused = false;
 
+    Station StationOnCursor;
+
     public override void _Ready()
     {
 
@@ -31,6 +33,30 @@ public class Default : Spatial, CartAction.IMutableGameState
 
             CurrentTick++;
             GD.Print($"CurrentTick={CurrentTick}");
+        }
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        base._UnhandledInput(@event);
+
+        if (@event.IsActionPressed("build_station_0"))
+        {
+            LoadStationOnCursor("res://actors/stations/LettuceStation.tscn");
+        }
+    }
+
+    void LoadStationOnCursor(string path)
+    {
+        StationOnCursor = GD.Load<PackedScene>(path).Instance<Station>();
+        GetTree().CurrentScene.AddChild(StationOnCursor);
+
+        foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())
+        {
+            var spat = (SpatialMaterial)(it.GetSurfaceMaterial(0)).Duplicate();
+            spat.FlagsTransparent = true;
+            spat.AlbedoColor = new Color(1, 1, 1, 0.5f);
+            it.MaterialOverride = spat;
         }
     }
 
