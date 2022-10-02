@@ -41,7 +41,7 @@ script = ExtResource( 1 )
 multimesh = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.55872, 12.866, 3.5 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.63485, 12.926, 3.5 )
 keep_aspect = 0
 far = 20.0
 
