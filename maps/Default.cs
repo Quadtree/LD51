@@ -39,7 +39,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (NextRecipeQueue == null)
         {
-            //RecipeQueue.Add(Recipes.HugeSalad);
+            Money = 10000;
+            RecipeQueue.Add(Recipes.MegaSandwich);
             RecipeQueue.Add(Recipes.Soup);
             RecipeQueue.Add(Recipes.Soup);
         }
