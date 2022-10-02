@@ -277,7 +277,9 @@ public class Cart : Spatial
                     for (var i = 0; i < 4; ++i)
                     {
                         var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                        if (!BlockedMap.ContainsKey(np) && (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) && np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
+                        if (!BlockedMap.ContainsKey(np) &&
+                            (i == node.GameState.CartStates[Cart.ID].Facing || node.GameState.CartStates[Cart.ID].TurnsLeft > 0) &&
+                            np.x >= 0 && np.y >= 0 && np.x < Ground.WIDTH && np.y < Ground.HEIGHT)
                         {
                             yield return Advance(node, new CAMove { CartID = Cart.ID, Dest = np, Facing = i });
                         }
@@ -294,7 +296,7 @@ public class Cart : Spatial
                             for (var i = 0; i < 4; ++i)
                             {
                                 var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                                if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient)
+                                if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient && node.GameState.GetStationState(BlockedMap[np].ID).CooldownWillBeUpAt <= node.GameState.CurrentTick)
                                 {
                                     //GD.Print("TRYING!");
                                     yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
