@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Godot;
 
 public class Cart : Spatial
@@ -117,11 +118,45 @@ public class Cart : Spatial
     {
         this.GetTree().Root.FindChildByType<Default>().Paused = true;
         FindThePathEnumerator = Prep().GetEnumerator();
+
+        if (OS.CanUseThreads())
+        {
+            PathFindingThread = new System.Threading.Thread(PathFindingThreadEntry);
+            PathFindingThread.Start();
+        }
     }
+
+    void PathFindingThreadEntry()
+    {
+        GD.Print("Pathfinding thread starting");
+        while (FindThePathEnumerator != null)
+        {
+            if (FindThePathEnumerator.MoveNext())
+            {
+                GD.Print($"Finding the path... {FindThePathEnumerator.Current}");
+                return;
+            }
+            else
+            {
+                this.GetTree().Root.FindChildByType<Default>().Paused = false;
+                FindThePathEnumerator = null;
+                if (PlannedActions.Count == 0)
+                {
+                    QueueFree();
+                }
+            }
+        }
+        GD.Print("Pathfinding thread done");
+        PathFindingThread = null;
+    }
+
+    System.Threading.Thread PathFindingThread;
 
 
     public override void _Process(float delta)
     {
+        if (PathFindingThread != null) return;
+
         if (FindThePathEnumerator != null)
         {
             if (FindThePathEnumerator.MoveNext())
