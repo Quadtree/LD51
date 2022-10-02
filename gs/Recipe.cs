@@ -41,5 +41,8 @@ public class Recipe
 public class Recipes
 {
     public static Recipe SimpleSalad = new Recipe(Recipe.Ing.Lettuce);
-    public static Recipe ChoppedSalad = new Recipe(Recipe.Ing.Lettuce);
+    public static Recipe ChoppedSalad = new Recipe(Recipe.Ing.Lettuce, Recipe.Ing.Chop);
+    public static Recipe Soup = new Recipe(Recipe.Ing.Water, Recipe.Ing.Tomato, Recipe.Ing.Cook);
+    public static Recipe Sandwich = new Recipe(Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein);
+    public static Recipe ToastedSandwich = new Recipe(Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Cook);
 }
