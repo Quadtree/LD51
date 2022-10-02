@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/huge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/normal.tres" type="DynamicFont" id=2]
 [ext_resource path="res://maps/BackToTitleButton.cs" type="Script" id=3]
+[ext_resource path="res://maps/FinalScoreLabel.cs" type="Script" id=4]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -25,10 +26,10 @@ anchor_right = 0.75
 anchor_bottom = 0.5
 margin_top = 0.200012
 custom_fonts/font = ExtResource( 2 )
-text = "With orders coming in every 10 seconds, you've decided to automate your kitchen. Robots will enter from the left to grab ingredients from stations that you place. Click the buttons on the right panel to select stations, and then place them on the grid. Robots can only make 5 turns, so don't make them turn too much. You can see on the left upcoming orders."
 align = 1
 valign = 1
 autowrap = true
+script = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.15

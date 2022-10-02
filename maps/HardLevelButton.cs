@@ -17,6 +17,10 @@ public class HardLevelButton : Button
         Default.NextRecipeQueue.Add(Recipes.Soup);
         Default.NextRecipeQueue.Add(Recipes.Sandwich);
 
+        Default.BronzeScore = Default.NextRecipeQueue.Count * 20;
+        Default.SilverScore = Default.NextRecipeQueue.Count * 30;
+        Default.GoldScore = Default.NextRecipeQueue.Count * 40;
+
         GetTree().ChangeScene("res://maps/Default.tscn");
     }
 }

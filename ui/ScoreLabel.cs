@@ -16,6 +16,6 @@ public class ScoreLabel : Label
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Text = $"Score: {this.GetTree().Root.FindChildByType<Default>().Score:n0}";
+        Text = $"Score: {Default.Score:n0}";
     }
 }
