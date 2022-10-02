@@ -23,9 +23,12 @@ public class StationInfo : Control
         var bar = this.FindChildByType<TextureProgress>();
         var currentTick = GetTree().Root.FindChildByType<Default>().CurrentTick;
 
-        if (currentTick >= sta.StationState.CooldownWillBeUpAt){
+        if (currentTick >= sta.StationState.CooldownWillBeUpAt)
+        {
             bar.Visible = false;
-        } else {
+        }
+        else
+        {
             bar.Visible = true;
             bar.Value = (sta.StationState.CooldownWillBeUpAt - currentTick) * 100 / sta.Cooldown;
         }
