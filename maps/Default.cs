@@ -14,18 +14,38 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public float Money = 500;
 
-    public List<Recipe> Recipes = new List<Recipe>();
+    public List<Recipe> RecipeQueue = new List<Recipe>();
 
     public Recipe GetNextRecipe()
     {
-        var ret = Recipes[0];
-        Recipes.RemoveAt(0);
+        var ret = RecipeQueue[0];
+        RecipeQueue.RemoveAt(0);
         return ret;
     }
 
     public override void _Ready()
     {
-
+        RecipeQueue.Add(Recipes.SimpleSalad);
+        RecipeQueue.Add(Recipes.SimpleSalad);
+        RecipeQueue.Add(Recipes.ChoppedSalad);
+        RecipeQueue.Add(Recipes.SimpleSalad);
+        RecipeQueue.Add(Recipes.ChoppedSalad);
+        RecipeQueue.Add(Recipes.ChoppedSalad);
+        RecipeQueue.Add(Recipes.ChoppedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.Soup);
+        RecipeQueue.Add(Recipes.Soup);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.Soup);
+        RecipeQueue.Add(Recipes.Soup);
+        RecipeQueue.Add(Recipes.SimpleSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
+        RecipeQueue.Add(Recipes.MixedSalad);
     }
 
     public override void _Process(float delta)
@@ -41,7 +61,6 @@ public class Default : Spatial, CartAction.IMutableGameState
                 GD.Print("Spawning!");
                 this.AddChild(GD.Load<PackedScene>("res://actors/Cart.tscn").Instance<Cart>());
             }
-
 
             CurrentTick++;
             GD.Print($"CurrentTick={CurrentTick}");

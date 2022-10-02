@@ -31,13 +31,7 @@ public class Cart : Spatial
 
     private IEnumerable<object> Prep()
     {
-        Recipe = new Recipe
-        {
-            Ings = new Recipe.Ing[]{
-                Recipe.Ing.Lettuce,
-                Recipe.Ing.Chop,
-            }
-        };
+        Recipe = GetTree().Root.FindChildByType<Default>().GetNextRecipe();
 
         ID = GetTree().Root.FindChildrenByType<Cart>().Select(it => it.ID).Max() + 1;
 
