@@ -26,7 +26,7 @@ public class BuyStationButton : Spatial
 
     void Pressed()
     {
-
+        GetTree().Root.FindChildByType<Default>().LoadStationOnCursor($"res://actors/stations/{Type}Station.tscn");
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
