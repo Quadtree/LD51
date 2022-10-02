@@ -267,6 +267,11 @@ public class Cart : Spatial
                 }
             }
 
+            if (ngs.GetCartState(Cart.ID).CanTakeNextActionAt > ngs.CurrentTick)
+            {
+                ngs.CurrentTick = ngs.GetCartState(Cart.ID).CanTakeNextActionAt;
+            }
+
             //GD.Print($"{ngs.CartStates[Cart.ID].Pos} / {ngs.CartStates[Cart.ID].Facing}");
 
             return new AStarNode(
