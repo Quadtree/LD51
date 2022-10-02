@@ -52,6 +52,18 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("build_station_0")) LoadStationOnCursor("res://actors/stations/LettuceStation.tscn");
         if (@event.IsActionPressed("build_station_1")) LoadStationOnCursor("res://actors/stations/ChopStation.tscn");
 
+
+
+        if (@event.IsActionPressed("cancel_plan"))
+        {
+            StationOnCursor = null;
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
             GD.Print("place_plan");
@@ -71,11 +83,6 @@ public class Default : Spatial, CartAction.IMutableGameState
                 GD.Print("Insufficient funds");
                 // TODO: Sound effect?
             }
-        }
-
-        if (@event.IsActionPressed("cancel_plan"))
-        {
-            StationOnCursor = null;
         }
     }
 
