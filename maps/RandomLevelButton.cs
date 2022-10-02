@@ -12,7 +12,7 @@ public class RandomLevelButton : Button
     {
         Default.NextRecipeQueue = new System.Collections.Generic.List<Recipe>();
 
-        for (var i = 0; i < 10; ++i)
+        while (Default.NextRecipeQueue.Count < 20)
         {
             var recp = Util.Choice(Recipes.AllRecipes);
             while (Util.RandChanceMil(350))
