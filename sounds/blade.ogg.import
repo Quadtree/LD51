@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blade.ogg-6495243d003706588dc52a90ea198669.oggstr"
+
+[deps]
+
+source_file="res://sounds/blade.ogg"
+dest_files=[ "res://.import/blade.ogg-6495243d003706588dc52a90ea198669.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

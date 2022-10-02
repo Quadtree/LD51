@@ -188,10 +188,14 @@ public class Cart : Spatial
                 var act = (CAUseStation)PlannedActions[ct];
                 var station = GetTree().Root.FindChildByPredicate<Station>(it => act.StationID == it.ID);
 
-                if (station.IngredientDelivered == Recipe.Ing.Cook)
-                {
-                    RepeatingSoundEffect.CreateRepeatingAudio(this, "res://sounds/burner.wav", station.Duration);
-                }
+                if (station.IngredientDelivered == Recipe.Ing.Cook) RepeatingSoundEffect.CreateRepeatingAudio(this, "res://sounds/burner.wav", station.Duration);
+                if (station.IngredientDelivered == Recipe.Ing.Chop) RepeatingSoundEffect.CreateRepeatingAudio(this, "res://sounds/blade.ogg", station.Duration);
+                if (station.IngredientDelivered == Recipe.Ing.Water) RepeatingSoundEffect.CreateRepeatingAudio(this, "res://sounds/water.ogg", station.Duration);
+
+                if (station.IngredientDelivered == Recipe.Ing.Bread) Util.SpawnOneShotSound("res://sounds/drop.ogg", this);
+                if (station.IngredientDelivered == Recipe.Ing.Lettuce) Util.SpawnOneShotSound("res://sounds/drop.ogg", this);
+                if (station.IngredientDelivered == Recipe.Ing.Protein) Util.SpawnOneShotSound("res://sounds/drop.ogg", this);
+                if (station.IngredientDelivered == Recipe.Ing.Tomato) Util.SpawnOneShotSound("res://sounds/drop.ogg", this);
             }
 
             PlannedActions[ct].Execute(def, true);
