@@ -44,12 +44,12 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Instantly fail if distance field is empty
 - Figure out UI freeze issue
 - Figure out lighting issue
+- Title screen
+- Multiple levels
 
 ### TODO
-- Multiple levels
 - Final graphics
 - Sound
-- Title screen
 - Win screen
 - Lose screen
 - Music
