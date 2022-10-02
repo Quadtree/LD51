@@ -39,12 +39,14 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - More recipies
 - Cart/cart collision
 - Display cooldown of buildings
+- Carts disappear when they reach the end
 
 ### TODO
-- Carts disappear when they reach the end
 - Multiple levels
 - Final graphics
 - Final UI
 - Sound
 - Title screen
+- Win screen
+- Lose screen
 - Music
