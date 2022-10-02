@@ -34,6 +34,11 @@ public class Default : Spatial, CartAction.IMutableGameState
             CurrentTick++;
             GD.Print($"CurrentTick={CurrentTick}");
         }
+
+        if (StationOnCursor != null)
+        {
+            StationOnCursor.SetGlobalLocation(Picking.PickPointAtCursor(this));
+        }
     }
 
     public override void _UnhandledInput(InputEvent @event)
