@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 Cost = 200.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.427756, 0 )
+transform = Transform( 0.651254, 0, 0, 0, 1, 0, 0, 0, 0.651254, 0, 0.427756, 0 )
 mesh = SubResource( 1 )
 
 [node name="Control" parent="." instance=ExtResource( 3 )]

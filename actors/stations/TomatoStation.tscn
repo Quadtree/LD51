@@ -4,3 +4,5 @@
 
 [node name="Spatial" instance=ExtResource( 1 )]
 IngredientDelivered = 6
+Cooldown = 45
+Cost = 100.0
