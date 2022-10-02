@@ -56,4 +56,6 @@ collision_mask = 16385
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 6 )
 
-[node name="InGameUI" parent="." instance=ExtResource( 6 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGameUI" parent="CanvasLayer" instance=ExtResource( 6 )]

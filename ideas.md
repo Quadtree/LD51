@@ -41,9 +41,9 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Display cooldown of buildings
 - Carts disappear when they reach the end
 - Final UI
+- Instantly fail if distance field is empty
 
 ### TODO
-- Instantly fail if distance field is empty
 - Figure out lighting issue
 - Figure out UI freeze issue
 - Multiple levels
