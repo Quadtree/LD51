@@ -33,6 +33,8 @@ public class Recipes
     public static Recipe Soup = new Recipe("Soup", Recipe.Ing.Water, Recipe.Ing.Tomato, Recipe.Ing.Cook);
     public static Recipe Sandwich = new Recipe("Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein);
     public static Recipe ToastedSandwich = new Recipe("Toasted Sandwich", Recipe.Ing.Bread, Recipe.Ing.Tomato, Recipe.Ing.Protein, Recipe.Ing.Cook);
+    public static Recipe Water = new Recipe("Water", Recipe.Ing.Water);
+    public static Recipe Tea = new Recipe("Tea", Recipe.Ing.Water, Recipe.Ing.Cook);
 }
 
 public struct IngModel

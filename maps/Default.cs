@@ -28,7 +28,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public override void _Ready()
     {
-        RecipeQueue.Add(Recipes.Soup);
+        RecipeQueue.Add(Recipes.Water);
 
         RecipeQueue.Add(Recipes.SimpleSalad);
         RecipeQueue.Add(Recipes.SimpleSalad);

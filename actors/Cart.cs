@@ -9,7 +9,7 @@ public class Cart : Spatial
     // carts take 1 move per 0.5 seconds
 
     public const float CART_MOVE_TIME = 0.5f;
-    public const int CART_MAX_TICKS = 45;
+    public const int CART_MAX_TICKS = 60;
 
     public int StartTick;
 
