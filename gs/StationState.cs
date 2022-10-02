@@ -25,6 +25,8 @@ public struct StationState
         var nss = gs.GetStationState(ID).Clone();
         CooldownWillBeUpAt = gs.CurrentTick + Cooldown;
         gs.SetStationState(ID, nss);
+
+        if (printDebugData) GD.Print($"Station {ID} has been used at tick {gs.CurrentTick}. CooldownWillBeUpAt={CooldownWillBeUpAt}");
     }
 
     public StationState Clone()

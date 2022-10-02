@@ -117,7 +117,7 @@ public class Cart : Spatial
         var ct = def.CurrentTick;
         if (PlannedActions.ContainsKey(ct))
         {
-            PlannedActions[ct].Execute(def);
+            PlannedActions[ct].Execute(def, true);
 
             PosToMoveTo = new Vector3(CurrentCartState.Pos.x, 0, CurrentCartState.Pos.y);
             BearingToTurnTo = (3 - CurrentCartState.Facing) * Mathf.Pi / 2;
