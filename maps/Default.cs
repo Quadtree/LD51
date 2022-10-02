@@ -123,11 +123,6 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("build_station_4")) LoadStationOnCursor("res://actors/stations/TomatoStation.tscn");
         if (@event.IsActionPressed("build_station_5")) LoadStationOnCursor("res://actors/stations/WaterStation.tscn");
         if (@event.IsActionPressed("build_station_6")) LoadStationOnCursor("res://actors/stations/CookStation.tscn");
-
-        if (@event.IsActionPressed("cancel_plan"))
-        {
-            StationOnCursor = null;
-        }
     }
 
     public override void _Input(InputEvent @event)
@@ -137,7 +132,7 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
             GD.Print("place_plan");
-            if (StationOnCursor.Cost <= Money)
+            if (StationOnCursor.Cost <= Money && !StationOnCursor.GetBlocked().ToArray().Intersect(GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).SelectMany(it => it.GetBlocked())).Any())
             {
                 Money -= StationOnCursor.Cost;
                 StationOnCursor.Built = true;
@@ -153,6 +148,12 @@ public class Default : Spatial, CartAction.IMutableGameState
                 GD.Print("Insufficient funds");
                 // TODO: Sound effect?
             }
+        }
+
+        if (@event.IsActionPressed("cancel_plan") && StationOnCursor != null)
+        {
+            StationOnCursor.QueueFree();
+            StationOnCursor = null;
         }
     }
 
