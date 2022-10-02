@@ -12,9 +12,13 @@ public class RandomLevelButton : Button
     {
         Default.NextRecipeQueue = new System.Collections.Generic.List<Recipe>();
 
-        for (var i = 0; i < 20; ++i)
+        for (var i = 0; i < 10; ++i)
         {
-            Default.NextRecipeQueue.Add(Util.Choice(Recipes.AllRecipes));
+            var recp = Util.Choice(Recipes.AllRecipes);
+            while (Util.RandChanceMil(350))
+            {
+                Default.NextRecipeQueue.Add(recp);
+            }
         }
 
         GetTree().ChangeScene("res://maps/Default.tscn");
