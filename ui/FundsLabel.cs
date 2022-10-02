@@ -16,6 +16,6 @@ public class FundsLabel : Label
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Text = $"Funds: {this.GetTree().Root.FindChildByType<Default>().Money:n0}";
+        Text = $"Funds: ${this.GetTree().Root.FindChildByType<Default>().Money:n0}";
     }
 }
