@@ -39,7 +39,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (NextRecipeQueue == null)
         {
-            RecipeQueue.Add(Recipes.HugeSalad);
+            //RecipeQueue.Add(Recipes.HugeSalad);
             RecipeQueue.Add(Recipes.Soup);
             RecipeQueue.Add(Recipes.Soup);
         }
