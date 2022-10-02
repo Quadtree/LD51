@@ -12,6 +12,7 @@ height = 1.0
 
 [node name="ChopStation" instance=ExtResource( 1 )]
 IngredientDelivered = 3
+Cooldown = 10
 Duration = 10
 
 [node name="MeshInstance" parent="." index="0"]
