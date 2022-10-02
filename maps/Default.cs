@@ -11,7 +11,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     Station StationOnCursor;
 
-    public float Money;
+    public float Money = 500;
 
     public override void _Ready()
     {
@@ -41,6 +41,8 @@ public class Default : Spatial, CartAction.IMutableGameState
         {
             StationOnCursor.Reposition(Picking.PickPointAtCursor(this).Value);
         }
+
+        Money += delta * 10;
     }
 
     public override void _UnhandledInput(InputEvent @event)
