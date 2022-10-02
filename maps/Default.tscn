@@ -60,6 +60,7 @@ environment = ExtResource( 7 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 collision_layer = 16385
+collision_mask = 16385
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 6 )

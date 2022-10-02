@@ -37,7 +37,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         if (StationOnCursor != null)
         {
-            StationOnCursor.SetGlobalLocation(Picking.PickPointAtCursor(this));
+            StationOnCursor.SetGlobalLocation(Picking.PickPointAtCursor(this).Value);
         }
     }
 
@@ -58,7 +58,7 @@ public class Default : Spatial, CartAction.IMutableGameState
 
         foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())
         {
-            var spat = (SpatialMaterial)(it.GetSurfaceMaterial(0)).Duplicate();
+            var spat = (SpatialMaterial)(it.GetActiveMaterial(0)).Duplicate();
             spat.FlagsTransparent = true;
             spat.AlbedoColor = new Color(1, 1, 1, 0.5f);
             it.MaterialOverride = spat;
