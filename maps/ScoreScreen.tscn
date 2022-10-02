@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/huge.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/normal.tres" type="DynamicFont" id=2]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="."]
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.2
+margin_bottom = 0.119995
+custom_fonts/font = ExtResource( 1 )
+text = "Level Completed!"
+align = 1
+valign = 1
+
+[node name="Title2" type="Label" parent="."]
+anchor_left = 0.25
+anchor_top = 0.3
+anchor_right = 0.75
+anchor_bottom = 0.5
+margin_top = 0.200012
+custom_fonts/font = ExtResource( 2 )
+text = "With orders coming in every 10 seconds, you've decided to automate your kitchen. Robots will enter from the left to grab ingredients from stations that you place. Click the buttons on the right panel to select stations, and then place them on the grid. Robots can only make 5 turns, so don't make them turn too much. You can see on the left upcoming orders."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.15
+anchor_top = 0.775
+anchor_right = 0.85
+anchor_bottom = 0.963
+margin_left = 1.0
+margin_top = -6.10352e-05
+margin_right = -0.84021
+margin_bottom = -0.0400391
+
+[node name="BackToTitleButton" type="Button" parent="HBoxContainer"]
+margin_left = 521.0
+margin_right = 821.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+text = "Back to Title"
