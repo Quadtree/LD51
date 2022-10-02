@@ -14,7 +14,11 @@ public class Default : Spatial, CartAction.IMutableGameState
     Station StationOnCursor;
 
     public float Money = 500;
-    public float Score = 0;
+    public static float Score = 0;
+
+    public static float BronzeScore = 1;
+    public static float SilverScore = 2;
+    public static float GoldScore = 3;
 
     public List<Recipe> RecipeQueue = new List<Recipe>();
 
@@ -31,6 +35,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public override void _Ready()
     {
+        Default.Score = 0;
+
         if (NextRecipeQueue == null)
         {
             RecipeQueue.Add(Recipes.Soup);

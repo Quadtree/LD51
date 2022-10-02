@@ -171,7 +171,7 @@ public class Cart : Spatial
                 this.SetGlobalLocation(PosToMoveTo);
                 if (CurrentCartState.Pos == ExitPoint)
                 {
-                    this.GetTree().Root.FindChildByType<Default>().Score += Cart.CART_MAX_TICKS - (this.GetTree().Root.FindChildByType<Default>().CurrentTick - StartTick);
+                    Default.Score += Cart.CART_MAX_TICKS - (this.GetTree().Root.FindChildByType<Default>().CurrentTick - StartTick);
                     QueueFree();
                 }
             }
