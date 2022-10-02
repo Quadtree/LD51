@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="InGameUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FundsLabel" type="Label" parent="."]
+margin_left = 19.0
+margin_top = 20.0
+margin_right = 256.0
+margin_bottom = 64.0
+text = "Funds: 0000"

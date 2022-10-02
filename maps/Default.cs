@@ -11,6 +11,8 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     Station StationOnCursor;
 
+    public float Money;
+
     public override void _Ready()
     {
 
