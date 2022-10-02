@@ -45,10 +45,7 @@ public class Default : Spatial, CartAction.IMutableGameState
     {
         base._UnhandledInput(@event);
 
-        if (@event.IsActionPressed("build_station_0"))
-        {
-            LoadStationOnCursor("res://actors/stations/LettuceStation.tscn");
-        }
+        if (@event.IsActionPressed("build_station_0")) LoadStationOnCursor("res://actors/stations/LettuceStation.tscn");
 
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
