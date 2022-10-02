@@ -54,6 +54,7 @@ public class Default : Spatial, CartAction.IMutableGameState
         foreach (var it in RecipeQueue)
         {
             var rce = GD.Load<PackedScene>("res://actors/UpcomingRecipe.tscn").Instance<UpcomingRecipe>();
+            rce.Recipe = it;
             UpcomingRecipes.Add(rce);
         }
     }
@@ -75,6 +76,9 @@ public class Default : Spatial, CartAction.IMutableGameState
             CurrentTick++;
             GD.Print($"CurrentTick={CurrentTick}");
         }
+
+        var timeLeft = 1 - ((CurrentTick / 20f) + Charge / Cart.CART_MOVE_TIME);
+        GD.Print(timeLeft);
 
         if (StationOnCursor != null)
         {
