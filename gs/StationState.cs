@@ -11,6 +11,7 @@ public struct StationState
 
     public void UseOn(CartAction.IMutableGameState gs, int CartID)
     {
+        AT.True(Ing != Recipe.Ing.None);
         var ncs = gs.GetCartState(CartID).Clone();
 
         ncs.Ings.Add(Ing);
