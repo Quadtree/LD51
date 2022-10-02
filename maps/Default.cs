@@ -135,6 +135,9 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
             GD.Print("place_plan");
+
+            Util.SpawnOneShotSound("res://sounds/place.wav", this);
+
             if (StationOnCursor.Cost <= Money &&
             !StationOnCursor.GetBlocked().ToArray().Intersect(GetTree().Root.FindChildrenByType<Station>().Where(it => it.Built).SelectMany(it => it.GetBlocked())).Any() &&
             StationOnCursor.IntPos != Cart.ExitPoint &&

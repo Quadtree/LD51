@@ -144,6 +144,7 @@ public class Cart : Spatial
                 FindThePathEnumerator = null;
                 if (PlannedActions.Count == 0)
                 {
+                    Util.SpawnOneShotSound("res://sounds/cart_lost.wav", this);
                     QueueFree();
                 }
             }
@@ -172,6 +173,7 @@ public class Cart : Spatial
                 FindThePathEnumerator = null;
                 if (PlannedActions.Count == 0)
                 {
+                    Util.SpawnOneShotSound("res://sounds/cart_lost.wav", this);
                     QueueFree();
                 }
             }
@@ -208,6 +210,7 @@ public class Cart : Spatial
                 this.SetGlobalLocation(PosToMoveTo);
                 if (CurrentCartState.Pos == ExitPoint)
                 {
+                    Util.SpawnOneShotSound("res://sounds/finish.wav", this);
                     Default.Score += Cart.CART_MAX_TICKS - (this.GetTree().Root.FindChildByType<Default>().CurrentTick - StartTick);
                     QueueFree();
                 }
