@@ -53,6 +53,10 @@ public class Default : Spatial, CartAction.IMutableGameState
         if (@event.IsActionPressed("place_plan") && StationOnCursor != null)
         {
             StationOnCursor.Built = true;
+            foreach (var it in StationOnCursor.FindChildrenByType<MeshInstance>())
+            {
+                it.MaterialOverride = null;
+            }
             // TODO: Money!
             StationOnCursor = null;
         }
