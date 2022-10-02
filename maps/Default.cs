@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class Default : Spatial, CartAction.IMutableGameState
@@ -58,6 +59,17 @@ public class Default : Spatial, CartAction.IMutableGameState
             rce.Recipe = it;
             UpcomingRecipes.Add(rce);
             AddChild(rce);
+        }
+
+        var n = 0;
+
+        foreach (var it in Util.GetEnumValues<Recipe.Ing>().Skip(1))
+        {
+            var rce = GD.Load<PackedScene>("res://ui/BuyStationButton.tscn").Instance<BuyStationButton>();
+            rce.Type = it;
+            AddChild(rce);
+            rce.SetGlobalLocation(new Vector3(12.5f, 0, n * 1.5f));
+            ++n;
         }
     }
 

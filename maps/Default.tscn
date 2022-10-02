@@ -39,7 +39,8 @@ script = ExtResource( 1 )
 multimesh = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.07642, 6.876, 3.5 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.07642, 12.1605, 3.5 )
+keep_aspect = 0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.713226, 0.642094, -0.281111, 0, 0.401053, 0.916055, 0.700934, 0.653354, -0.286041, 0, 7.11042, 0 )
