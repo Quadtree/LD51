@@ -294,7 +294,6 @@ public class Cart : Spatial
 
         public uint GetMoveCostBetweenNodes(AStarNode node1, AStarNode node2)
         {
-
             var cs1 = node1.GameState.CartStates[Cart.ID];
             var cs2 = node2.GameState.CartStates[Cart.ID];
             var neededCount = cs1.Ings.Count - cs2.Ings.Count;
@@ -306,6 +305,7 @@ public class Cart : Spatial
             else
             {
                 var nextIngredient = cs2.Ings[cs1.Ings.Count];
+                AT.DoesNotContain(cs2.Ings, Recipe.Ing.None);
                 AT.True(nextIngredient != Recipe.Ing.None);
                 var tp = Tuple.Create(cs1.Pos, nextIngredient);
                 if (!DistanceField.ContainsKey(tp))
