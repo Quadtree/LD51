@@ -13,6 +13,14 @@ public class UpcomingRecipe : Spatial
     public override void _Ready()
     {
         this.FindChildByType<Label>().Text = $"{Recipe.Name}";
+
+        for (var i = 0; i < Recipe.Ings.Length; ++i)
+        {
+            var rep = GD.Load<PackedScene>(IngModels.Data[Recipe.Ings[i]].Path).Instance<Spatial>();
+            rep.Translation = new Vector3(1 + i, 0, 0);
+            rep.Scale = Vector3.One * 0.1f;
+            AddChild(rep);
+        }
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
