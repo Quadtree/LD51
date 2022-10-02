@@ -32,6 +32,21 @@ align = 1
 valign = 1
 autowrap = true
 
+[node name="Title3" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1101.0
+margin_top = -102.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_fonts/font = ExtResource( 2 )
+text = "Made by Quadtree for Ludum Dare 51"
+align = 2
+valign = 2
+autowrap = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.15
 anchor_top = 0.775

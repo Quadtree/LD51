@@ -92,7 +92,7 @@ public class Cart : Spatial
 
                 return Enumerable.SequenceEqual(it.GameState.CartStates[ID].Ings, Recipe.Ings) && it.GameState.CartStates[ID].Pos == ExitPoint;
             },
-            maxIteration: 250_000
+            maxIteration: OS.CanUseThreads() ? 50_000 : 20_000
         ))
         {
             yield return it;
@@ -119,6 +119,9 @@ public class Cart : Spatial
         this.GetTree().Root.FindChildByType<Default>().Paused = true;
         FindThePathEnumerator = Prep().GetEnumerator();
 
+        // make sure the startup actions happen on the main thread
+        FindThePathEnumerator.MoveNext();
+
         if (OS.CanUseThreads())
         {
             PathFindingThread = new System.Threading.Thread(PathFindingThreadEntry);
@@ -133,8 +136,7 @@ public class Cart : Spatial
         {
             if (FindThePathEnumerator.MoveNext())
             {
-                GD.Print($"Finding the path... {FindThePathEnumerator.Current}");
-                return;
+                GD.Print($"Finding the path on thread... {FindThePathEnumerator.Current}");
             }
             else
             {
