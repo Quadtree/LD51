@@ -46,10 +46,12 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Figure out lighting issue
 - Title screen
 - Multiple levels
+- Lose screen
 
 ### TODO
 - Final graphics
 - Sound
-- Win screen
-- Lose screen
+- Score screen
+
+### Unlikely
 - Music
