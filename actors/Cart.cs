@@ -283,14 +283,25 @@ public class Cart : Spatial
 
                     if (!Enumerable.SequenceEqual(node.GameState.CartStates[Cart.ID].Ings, Cart.Recipe.Ings))
                     {
-                        for (var i = 0; i < 4; ++i)
+                        var cs1 = node.GameState.CartStates[Cart.ID].Ings;
+                        var recipeNeeded = Cart.Recipe.Ings;
+                        var nextIngredient = cs1.Count < recipeNeeded.Length ? recipeNeeded[cs1.Count] : Recipe.Ing.None;
+
+                        if (nextIngredient != Recipe.Ing.None)
                         {
-                            var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
-                            if (BlockedMap.ContainsKey(np))
+                            for (var i = 0; i < 4; ++i)
                             {
-                                //GD.Print("TRYING!");
-                                yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
+                                var np = node.GameState.CartStates[Cart.ID].Pos + deltas[i];
+                                if (BlockedMap.ContainsKey(np) && BlockedMap[np].IngredientDelivered == nextIngredient)
+                                {
+                                    //GD.Print("TRYING!");
+                                    yield return Advance(node, new CAUseStation { CartID = Cart.ID, StationID = BlockedMap[np].ID });
+                                }
                             }
+                        }
+                        else
+                        {
+                            GD.PushError("Wait a minute...");
                         }
                     }
                 }
