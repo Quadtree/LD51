@@ -16,6 +16,13 @@ public class Default : Spatial, CartAction.IMutableGameState
 
     public List<Recipe> Recipes = new List<Recipe>();
 
+    public Recipe GetNextRecipe()
+    {
+        var ret = Recipes[0];
+        Recipes.RemoveAt(0);
+        return ret;
+    }
+
     public override void _Ready()
     {
 
