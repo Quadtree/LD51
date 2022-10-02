@@ -33,27 +33,8 @@ public class Default : Spatial, CartAction.IMutableGameState
     {
         if (NextRecipeQueue == null)
         {
-            RecipeQueue.Add(Recipes.SimpleSalad);
-            RecipeQueue.Add(Recipes.SimpleSalad);
-            RecipeQueue.Add(Recipes.ChoppedSalad);
-            RecipeQueue.Add(Recipes.SimpleSalad);
-            RecipeQueue.Add(Recipes.ChoppedSalad);
-            RecipeQueue.Add(Recipes.ChoppedSalad);
-            RecipeQueue.Add(Recipes.ChoppedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
             RecipeQueue.Add(Recipes.Soup);
             RecipeQueue.Add(Recipes.Soup);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.Soup);
-            RecipeQueue.Add(Recipes.Soup);
-            RecipeQueue.Add(Recipes.SimpleSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
-            RecipeQueue.Add(Recipes.MixedSalad);
         }
         else
         {
