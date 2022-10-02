@@ -13,6 +13,7 @@ public class Default : Spatial, CartAction.IMutableGameState
     Station StationOnCursor;
 
     public float Money = 500;
+    public float Score = 0;
 
     public List<Recipe> RecipeQueue = new List<Recipe>();
 
