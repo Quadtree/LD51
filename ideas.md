@@ -41,6 +41,7 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Display cooldown of buildings
 
 ### TODO
+- Carts disappear when they reach the end
 - Multiple levels
 - Final graphics
 - Final UI
