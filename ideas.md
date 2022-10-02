@@ -47,9 +47,9 @@ The player gets credit for the time it takes orders to complete. Each order prob
 - Title screen
 - Multiple levels
 - Lose screen
+- Prevent placing stations on top of eachother
 
 ### TODO
-- Prevent placing stations on top of eachother
 - Final graphics
 - Sound
 - Prevent carts from overlapping
