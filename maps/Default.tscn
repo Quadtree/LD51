@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://maps/Ground.cs" type="Script" id=1]
 [ext_resource path="res://textures/floor_tile.png" type="Texture" id=2]
 [ext_resource path="res://textures/floor_tile_n.png" type="Texture" id=3]
 [ext_resource path="res://actors/stations/LettuceStation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://maps/Default.cs" type="Script" id=5]
-[ext_resource path="res://actors/Cart.tscn" type="PackedScene" id=6]
 [ext_resource path="res://default_env.tres" type="Environment" id=7]
 [ext_resource path="res://actors/stations/ChopStation.tscn" type="PackedScene" id=8]
 
@@ -50,7 +49,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 4 )
 [node name="ChopStation" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2 )
 
-[node name="Cart" parent="." instance=ExtResource( 6 )]
+[node name="ChopStation2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 7 )
