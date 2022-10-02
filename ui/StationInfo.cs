@@ -30,7 +30,7 @@ public class StationInfo : Control
         else
         {
             bar.Visible = true;
-            bar.Value = (sta.StationState.CooldownWillBeUpAt - currentTick) * 100 / sta.Cooldown;
+            bar.Value = 100 - (sta.StationState.CooldownWillBeUpAt - currentTick) * 100 / sta.Cooldown;
         }
     }
 }
